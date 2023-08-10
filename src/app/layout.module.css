@@ -1,0 +1,12 @@
+.layout {
+  max-width: 60rem;
+  padding: 0 1rem;
+  margin: 3rem auto 6rem;
+}
+
+.libbyRear {
+  font-size: 70px;
+  z-index: -1;
+  position: relative;
+  color: #ba506b;
+}

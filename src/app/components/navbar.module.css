@@ -1,0 +1,107 @@
+.navList {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+  color: palevioletred;
+}
+
+.navItemContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: 130px;
+}
+
+.navText {
+  margin-top: 10px;
+  font-family: 'simply-rounded';
+  text-decoration: none;
+}
+
+.paperContainer {
+  width: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.cvLink {
+  width: 100%;
+  height: auto;
+  position: relative;
+  bottom: 0px;
+}
+.cvLinkActive {
+  width: 100%;
+  height: auto;
+  opacity: 80%;
+  position: relative;
+  bottom: 0px;
+}
+
+.briefcaseContainer {
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.workLink {
+  width: 100%;
+  height: auto;
+  opacity: 80%;
+  position: relative;
+  bottom: 0px;
+}
+.workLinkActive {
+  width: 100%;
+  height: auto;
+  opacity: 100%;
+  position: relative;
+  bottom: 0px;
+}
+
+.plantContainer {
+  width: 90px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: float;
+  overflow: visible;
+}
+.skillsLink {
+  width: 100%;
+  height: auto;
+  opacity: 80%;
+  position: relative;
+  bottom: 0px;
+}
+.skillsLinkActive {
+  width: 100%;
+  height: auto;
+  opacity: 100%;
+  position: relative;
+  bottom: 0px;
+  overflow: visible;
+}
+
+.telephoneContainer {
+  width: 110px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.contactLink {
+  width: 100%;
+  height: auto;
+  opacity: 70%;
+  position: relative;
+  bottom: 0px;
+}
+.contactLinkActive {
+  width: 100%;
+  height: auto;
+  opacity: 90%;
+  position: relative;
+  bottom: 0px;
+}

@@ -1,0 +1,28 @@
+.linksContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'simply-rounded';
+}
+
+.linksListContainer {
+  color: brown;
+  display: grid;
+  grid-template-columns: 170px 170px;
+  column-gap: 100px;
+  margin: auto;
+}
+
+.contactLink {
+  display: flex;
+  gap: 6px;
+  font-size: smaller;
+  align-items: center;
+}
+
+.iconContainer {
+  width: 35px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
