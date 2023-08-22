@@ -3,7 +3,6 @@
   display: flex;
   justify-content: space-between;
   padding: 0;
-  color: palevioletred;
 }
 
 .navItemContainer {
@@ -16,8 +15,17 @@
 
 .navText {
   margin-top: 10px;
-  font-family: 'simply-rounded';
+  font-family: 'Inconsolata';
   text-decoration: none;
+  padding: 0.15rem 0.3rem;
+}
+.navTextActive {
+  margin-top: 10px;
+  font-family: 'Inconsolata';
+  text-decoration: none;
+  background-color: var(--active-1);
+  border-radius: 20px;
+  padding: 0.15rem 0.3rem;
 }
 
 .paperContainer {

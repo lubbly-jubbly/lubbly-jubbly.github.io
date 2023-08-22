@@ -1,0 +1,7 @@
+.skillItem {
+  background: var(--skills-bubble);
+  /* border: 3px solid lightgray; */
+  padding: 0.5rem;
+  border-radius: 0.75rem;
+  font-family: 'simply-rounded';
+}

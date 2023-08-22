@@ -1,5 +1,4 @@
-import Image from "next/image";
-import Link from "next/link";
+import Link from 'next/link'
 
 function HomePage() {
   return (
@@ -9,10 +8,10 @@ function HomePage() {
         but hoping to move to Berlin...with your help!
       </div>
       <div>
-        <Image src="/images/fun-libby.png" alt="me" width="64" height="64"/>
+        <img src="/images/fun-libby.png" alt="me" width="64" height="64" />
       </div>
     </main>
-  );
+  )
 }
 
-export default HomePage;
+export default HomePage

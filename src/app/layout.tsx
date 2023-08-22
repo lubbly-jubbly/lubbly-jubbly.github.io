@@ -1,12 +1,12 @@
 import '../../styles/globals.css'
-import Head from "next/head";
-import React, { ReactNode } from "react";
-import Navbar from "./components/navbar";
-import styles from "./layout.module.css";
-import 'bootstrap/dist/css/bootstrap.css';
-import { Metadata } from "next";
-import { Inter } from "next/font/google";
-import Links from './components/links';
+import Head from 'next/head'
+import React, { ReactNode } from 'react'
+import Navbar from './components/navbar'
+import styles from './layout.module.css'
+import 'bootstrap/dist/css/bootstrap.css'
+import { Metadata } from 'next'
+import { Inter } from 'next/font/google'
+import Links from './components/links'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -19,30 +19,25 @@ type LayoutProps = {
   children: ReactNode
 }
 
-const Layout: React.FC<LayoutProps> = ({
-  children,
-}) => {
+const Layout: React.FC<LayoutProps> = ({ children }) => {
   // const [funMode, setFunMode] = useState(true);
 
   return (
-    <html lang="en">   
+    <html lang="en">
       <body className={styles.layout}>
-          <div
-            className={
-              "d-flex justify-content-center header-font " +
-              styles.libbyRear 
-            }
-          >
-            Libby Rear
-          </div>
-        <Navbar/>
-        <div>
-          {children}
+        <div
+          className={
+            'd-flex justify-content-center header-font ' + styles.libbyRear
+          }
+        >
+          Libby Rear
         </div>
-        <Links/>
+        <Navbar />
+        <div className="my-5">{children}</div>
+        <Links />
       </body>
-      </html>
-  );
-};
+    </html>
+  )
+}
 
-export default Layout;
+export default Layout
