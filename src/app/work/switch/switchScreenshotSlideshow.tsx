@@ -1,6 +1,4 @@
 'use client'
-import SkillItem from '@/app/components/skillItem'
-import Link from 'next/link'
 import { Slide } from 'react-slideshow-image'
 import 'react-slideshow-image/dist/styles.css'
 import styles from './switchScreenshotSlideshow.module.css'
@@ -9,95 +7,191 @@ function SwitchScreenshotSlideshow() {
   const imagesBaseUrl = '/images/switchScreenshots/'
   const images: {
     url: string
-    caption: string
+    caption: JSX.Element
   }[][] = [
     [
-      { url: 'login-1.png', caption: 'Login' },
-      { url: 'reset-password.png', caption: 'Reset password' },
+      { url: 'login-1.png', caption: <span>Login</span> },
+      { url: 'reset-password.png', caption: <span>Reset password</span> },
     ],
     [
-      { url: 'signup-2.png', caption: 'Signup' },
-      { url: 'signup-1.png', caption: 'Signup (scrolled down)' },
+      { url: 'signup-2.png', caption: <span>Signup</span> },
+      { url: 'signup-1.png', caption: <span>Signup (scrolled down)</span> },
     ],
     [
-      { url: 'create-team.png', caption: 'Employers can create a new team' },
+      {
+        url: 'create-team.png',
+        caption: (
+          <span>
+            <span className={styles.employerText}>Employers</span> can create a
+            new team
+          </span>
+        ),
+      },
       {
         url: 'enter-join-code.png',
-        caption: 'Employees can enter a join code for their team',
+        caption: (
+          <span>
+            <span className={styles.employeeText}>Employees</span> can enter a
+            join code for their team
+          </span>
+        ),
       },
     ],
     [
       {
         url: 'request-time-off.png',
-        caption: 'Employees can request time off',
+        caption: (
+          <span>
+            <span className={styles.employeeText}>Employees</span> can request
+            time off
+          </span>
+        ),
       },
       {
         url: 'time-pickers-disappear.png',
-        caption: `Time pickers disappear when 'All-day' toggle enabled`,
+        caption: (
+          <span>Time pickers disappear when 'all-day' toggle enabled</span>
+        ),
       },
       {
         url: 'regular-time-off.png',
-        caption: 'Users can make a request for regular time off',
+        caption: (
+          <span>
+            <span className={styles.employeeText}>Employees</span> can make a
+            request for regular time off
+          </span>
+        ),
       },
       {
         url: 'select-time-off.png',
-        caption: 'Admins can select time off, without requiring approval',
+        caption: (
+          <span>
+            <span className={styles.employerText}>Employers</span> can select
+            time off, without requiring approval
+          </span>
+        ),
       },
     ],
     [
       {
         url: 'view-requests.png',
-        caption:
-          'Employers can view pending, accepted and rejected time-off requests in the requests tab.',
+        caption: (
+          <span>
+            <span className={styles.employerText}>Employers</span> can view
+            pending, accepted and rejected time-off requests in the requests
+            tab.
+          </span>
+        ),
       },
       {
         url: 'request-modal.png',
-        caption: 'Employers can accept or reject time-off requests',
+        caption: (
+          <span>
+            <span className={styles.employerText}>Employers</span> can accept or
+            reject time-off requests
+          </span>
+        ),
       },
       {
         url: 'employee-view-requests.png',
-        caption: 'Employees can view the status of their own time-off requests',
+        caption: (
+          <span>
+            <span className={styles.employeeText}>Employees</span> can view the
+            status of their own time-off requests
+          </span>
+        ),
       },
     ],
     [
       {
         url: 'view-team.png',
-        caption: 'Edit team.',
+        caption: (
+          <span>
+            <span className={styles.employerText}>Employers</span> can edit
+            their team.
+          </span>
+        ),
       },
       {
         url: 'edit-weekly-hours.png',
-        caption: `Edit an employee's weekly hours.`,
+        caption: (
+          <span>
+            Edit an <span className={styles.employeeText}>employee's</span>{' '}
+            weekly hours.
+          </span>
+        ),
       },
       {
         url: 'remove-employee.png',
-        caption: 'Remove an employee from the team.',
+        caption: (
+          <span>
+            Remove an <span className={styles.employeeText}>employee</span> from
+            the team
+          </span>
+        ),
       },
     ],
     [
       {
         url: 'staff-requirements.png',
-        caption:
-          'Employers can choose the staff requirements for their workplace.',
+        caption: (
+          <span>
+            <span className={styles.employerText}>Employers</span> can choose
+            the staff requirements for their workplace
+          </span>
+        ),
       },
       {
         url: 'add-shift.png',
-        caption: 'Add a shift.',
+        caption: <span>Add a shift</span>,
       },
       {
         url: 'delete-shift.png',
-        caption: 'Delete a shift.',
+        caption: <span>Delete a shift</span>,
+      },
+    ],
+    [
+      {
+        url: 'rota-tab-admin.png',
+        caption: (
+          <span>
+            <span className={styles.employerText}>Employer</span> rota tab
+          </span>
+        ),
+      },
+      {
+        url: 'create-rota.png',
+        caption: (
+          <span>
+            <span className={styles.employerText}>Employers</span> can create a
+            rota
+          </span>
+        ),
+      },
+    ],
+    [
+      {
+        url: 'home-tab.png',
+        caption: <span>Users can view upcoming shifts in the home tab</span>,
+      },
+      {
+        url: 'day-details.png',
+        caption: <span>Shift and absence details</span>,
       },
     ],
   ]
 
-  const imageWithCaption = (url: string, caption: string) => (
-    <div>
-      <img
-        src={imagesBaseUrl + url}
-        alt="a screenshot of Switch"
-        height="300px"
-      />
-      <p>{caption}</p>
+  const imageWithCaption = (url: string, caption: JSX.Element) => (
+    <div className={styles.imageWithCaption}>
+      <div className={styles.imageContainer}>
+        <img
+          src={imagesBaseUrl + url}
+          alt="a screenshot of Switch"
+          width={'100%'}
+          className={styles.slideImage}
+        />
+      </div>
+      <p className={styles.caption}>{caption}</p>
     </div>
   )
 
@@ -110,28 +204,6 @@ function SwitchScreenshotSlideshow() {
           )}
         </div>
       ))}
-      {/* <div className="each-slide-effect">
-        <img src={imagesBaseUrl + imageUrls[0]} alt="a screenshot of Switch" />
-        <div
-          style={{ backgroundImage: `url(${imagesBaseUrl + imageUrls[0]})` }}
-        >
-          <span>Slide 1</span>
-        </div>
-      </div>
-      <div className="each-slide-effect">
-        <div
-          style={{ backgroundImage: `url(${imagesBaseUrl + imageUrls[1]})` }}
-        >
-          <span>Slide 2</span>
-        </div>
-      </div>
-      <div className="each-slide-effect">
-        <div
-          style={{ backgroundImage: `url(${imagesBaseUrl + imageUrls[2]}})` }}
-        >
-          <span>Slide 3</span>
-        </div>
-      </div> */}
     </Slide>
   )
 }

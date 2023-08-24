@@ -9,7 +9,7 @@ function SkillList(props: SkillListProps) {
   return (
     <div className={styles.skillList}>
       <div className={styles.category}>{props.category + ' >'}</div>
-      <div className={styles.skillItemsContainer}>
+      <div className="skillItemsContainer">
         {props.items.map((language, index) => (
           <SkillItem text={language} key={index} />
         ))}

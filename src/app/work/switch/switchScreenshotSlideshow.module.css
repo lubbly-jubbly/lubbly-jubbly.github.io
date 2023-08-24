@@ -7,3 +7,32 @@
   flex-direction: row;
   justify-content: space-evenly;
 }
+
+.employeeText {
+  color: var(--employee-burnt-orange);
+}
+
+.employerText {
+  color: var(--employer-blue);
+}
+
+.caption {
+  font-size: small;
+  width: 100%;
+  text-align: justify;
+}
+
+.imageWithCaption {
+  width: 175px;
+}
+
+.slideImage {
+  /* border: 10px solid red;
+  border-radius: 10px; */
+}
+
+.imageContainer {
+  border: 8px solid #aee4e8bb;
+  border-radius: 15px;
+  margin-bottom: 0.25rem;
+}
