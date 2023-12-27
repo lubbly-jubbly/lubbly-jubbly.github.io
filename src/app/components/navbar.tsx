@@ -64,8 +64,8 @@ const Navbar = () => {
                   src={
                     hoveredNavItem === 'briefcase' ||
                     activeNavItem === 'briefcase'
-                      ? '/images/briefcase-open.png'
-                      : '/images/briefcase-closed.png'
+                      ? './images/briefcase-open.png'
+                      : './images/briefcase-closed.png'
                   }
                   alt="briefcase"
                   className={
@@ -104,8 +104,8 @@ const Navbar = () => {
                 <img
                   src={
                     hoveredNavItem === 'plant' || activeNavItem === 'plant'
-                      ? '/images/plant-flowered.png'
-                      : '/images/plant-baby.png'
+                      ? './images/plant-flowered.png'
+                      : './images/plant-baby.png'
                   }
                   alt="a potted plant"
                   className={
@@ -143,8 +143,8 @@ const Navbar = () => {
                 <img
                   src={
                     hoveredNavItem === 'paper'
-                      ? '/images/crumpled-paper.png'
-                      : '/images/paper.png'
+                      ? './images/crumpled-paper.png'
+                      : './images/paper.png'
                   }
                   alt="bit of paper"
                   className={
@@ -175,8 +175,8 @@ const Navbar = () => {
                   src={
                     hoveredNavItem === 'telephone' ||
                     activeNavItem === 'telephone'
-                      ? '/images/telephone-ringing.png'
-                      : '/images/telephone.png'
+                      ? './images/telephone-ringing.png'
+                      : './images/telephone.png'
                   }
                   alt="a red old-fashioned telephone"
                   className={
