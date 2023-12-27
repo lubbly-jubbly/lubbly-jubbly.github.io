@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import styles from './links.module.css'
+import telephone from './images/telephone-icon.png'
 
 function Links() {
   return (
@@ -9,7 +10,7 @@ function Links() {
         <div className={styles.contactLink}>
           <div className={styles.iconContainer}>
             <img
-              src={'./libbys-portfolio-website/images/telephone-icon.png'}
+              src={'./images/telephone-icon.png'}
               alt="a red old-fashioned telephone"
             />
           </div>
