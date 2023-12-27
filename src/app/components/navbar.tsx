@@ -9,10 +9,10 @@ const Navbar = () => {
 
   const audioRef = useRef<HTMLAudioElement | null>(null)
 
-  const paperAudioUrl = '/sounds/crumpling-paper.mp3'
-  const briefcaseAudioUrl = '/sounds/briefcase-opening.mp3'
-  const plantAudioUrl = '/sounds/plant-growing.mp3'
-  const telephoneAudioUrl = '/sounds/telephone-ringing.mp3'
+  const paperAudioUrl = './sounds/crumpling-paper.mp3'
+  const briefcaseAudioUrl = './sounds/briefcase-opening.mp3'
+  const plantAudioUrl = './sounds/plant-growing.mp3'
+  const telephoneAudioUrl = './sounds/telephone-ringing.mp3'
 
   const playAudio = (audioPath: string) => {
     if (audioRef.current !== null) {
