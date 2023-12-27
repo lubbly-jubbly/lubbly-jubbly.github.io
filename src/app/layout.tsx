@@ -23,10 +23,10 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   // const [funMode, setFunMode] = useState(true);
 
   return (
-    <Head>
-    <link rel="icon" href="./images/lola.png" />
-    </Head>
     <html lang="en">
+      <head>
+        <link rel="icon" href="./images/lola.png" />
+      </head>
       <body className={styles.layout}>
         <div
           className={
