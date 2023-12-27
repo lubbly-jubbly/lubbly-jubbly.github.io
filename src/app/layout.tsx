@@ -24,6 +24,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="./images/lola.png" />
+      </head>
       <body className={styles.layout}>
         <div
           className={
