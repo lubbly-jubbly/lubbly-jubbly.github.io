@@ -9,7 +9,7 @@ function Links() {
         <div className={styles.contactLink}>
           <div className={styles.iconContainer}>
             <img
-              src={'/images/telephone-icon.png'}
+              src={'./libbys-portfolio-website/images/telephone-icon.png'}
               alt="a red old-fashioned telephone"
             />
           </div>
