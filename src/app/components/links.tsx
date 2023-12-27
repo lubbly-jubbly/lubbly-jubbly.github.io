@@ -1,12 +1,6 @@
 import Link from 'next/link'
 import styles from './links.module.css'
 
-// Images
-// import telephone from './images/telephone-icon.png'
-// import envelope from './images/envelope-icon.png'
-// import github from './images/github-icon.png'
-// import linkedin from './images/linkedin-icon.png'
-
 function Links() {
   return (
     <div className={styles.linksContainer}>
