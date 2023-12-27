@@ -1,8 +1,5 @@
 import Image from 'next/image'
 import Link from 'next/link'
-// Images
-import telephone from './images/briefcase-open.png'
-import envelope from './images/briefcase-open.png'
 
 function HomePage() {
   return (
