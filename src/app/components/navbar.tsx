@@ -177,7 +177,7 @@ const Navbar = () => {
             </Link>
           </li>
           <li>
-            <Link href="../contact">
+            <Link href="/contact">
               <div
                 className={styles.navItemContainer}
                 onMouseEnter={() =>
