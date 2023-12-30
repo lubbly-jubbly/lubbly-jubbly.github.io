@@ -3,10 +3,10 @@
   flex-direction: column;
   align-items: center;
   font-family: 'Inconsolata';
+  color: var(--dark-text);
 }
 
 .linksListContainer {
-  color: brown;
   display: grid;
   grid-template-columns: 170px 170px;
   column-gap: 100px;

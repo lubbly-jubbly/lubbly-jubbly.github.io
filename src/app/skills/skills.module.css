@@ -6,21 +6,13 @@
 
 .skillList {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
-}
-
-.skillItemsContainer {
-  display: flex;
-  justify-content: flex-end;
-  column-gap: 1rem;
-  row-gap: 0.5rem;
-  flex-wrap: wrap;
 }
 
 .category {
   white-space: nowrap;
-  color: grey;
+  color: black;
   font-family: 'Inconsolata';
   font-size: 20px;
 }

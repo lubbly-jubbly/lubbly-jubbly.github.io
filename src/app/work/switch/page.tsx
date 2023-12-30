@@ -8,13 +8,10 @@ import styles from './switch.module.css'
 function SwitchPage() {
   const technologies = [
     'React Native',
-    'JS',
+    'JavaScript',
     'Firebase Realtime DB',
     'Firebase Auth',
-    'Jira',
-    'Agile',
     'Figma',
-    'Git',
     'Jest',
   ]
 
@@ -30,12 +27,24 @@ function SwitchPage() {
       </div>
       <div className="mb-4">
         My final project for my Software Development MSc was a rota management
-        app for hospitality workplaces.
+        app for hospitality workplaces.{' '}
+        <span>
+          Watch a video demo{' '}
+          <Link href="" className="inline-link">
+            here.
+          </Link>{' '}
+          View it on{' '}
+          <Link
+            href="https://github.com/lubbly-jubbly/CalendarProject3"
+            className="inline-link"
+            target="_blank"
+          >
+            Github
+          </Link>
+          .
+        </span>
       </div>
       <SwitchScreenshotSlideshow />
-      <div>
-        Watch a video demo <Link href="">here.</Link> View it on Github.
-      </div>
     </div>
   )
 }

@@ -1,9 +1,8 @@
-import SkillItem from '../components/skillItem'
 import SkillList from './skillList'
 import styles from './skills.module.css'
 
-function SkillsPage() {
-  const languages = [
+export const skills = {
+  languages: [
     'C#',
     'Python',
     'Java',
@@ -12,16 +11,17 @@ function SkillsPage() {
     'JavaScript',
     'TypeScript',
     'MATLAB',
-  ]
-  const librariesAndFrameworks = [
+  ],
+  librariesAndFrameworks: [
     'React',
     'React Native',
     'Redux',
     'Bootstrap',
     'Next.js',
-  ]
-  const data = ['SQL', 'Cosmos DB', 'Firebase DBs', 'Redis']
-  const other = [
+  ],
+  data: ['SQL', 'Cosmos DB', 'Firebase DBs', 'Redis'],
+  nonVisibleData: ['Firebase Realtime DB'],
+  other: [
     'Git',
     'Latex',
     'Figma',
@@ -29,18 +29,21 @@ function SkillsPage() {
     'Docker',
     'Node.js',
     'Linux',
-  ]
+  ],
+  nonVisibleOther: ['Firebase Auth', 'Jest'],
+}
 
+function SkillsPage() {
   return (
     <div>
       <div className={styles.skillListsContainer}>
-        <SkillList category="LANGUAGES" items={languages} />
+        <SkillList category="LANGUAGES" items={skills.languages} />
         <SkillList
           category="LIBRARIES AND FRAMEWORKS"
-          items={librariesAndFrameworks}
+          items={skills.librariesAndFrameworks}
         />
-        <SkillList category="DATA" items={data} />
-        <SkillList category="OTHER" items={other} />
+        <SkillList category="DATA" items={skills.data} />
+        <SkillList category="OTHER" items={skills.other} />
       </div>
     </div>
   )

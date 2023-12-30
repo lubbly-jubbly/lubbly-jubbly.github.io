@@ -4,12 +4,12 @@ import styles from './links.module.css'
 function Links() {
   return (
     <div className={styles.linksContainer}>
-      <div>My Links</div>
+      <img src="./images/my-links-text.png" alt="my links text" width="120px" />
       <div className={styles.linksListContainer}>
         <div className={styles.contactLink}>
           <div className={styles.iconContainer}>
             <img
-              src={'./images/telephone-icon.png'}
+              src={'./images/phone-icon.png'}
               alt="a red old-fashioned telephone"
             />
           </div>
@@ -28,7 +28,7 @@ function Links() {
         >
           <div className={styles.iconContainer}>
             <img
-              src={'./images/github-icon.png'}
+              src={'./images/github-drawn-icon.png'}
               alt="a strange looking black cat"
             />
           </div>
