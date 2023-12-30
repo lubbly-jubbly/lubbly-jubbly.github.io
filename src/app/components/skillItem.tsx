@@ -1,4 +1,4 @@
-import { skills } from '../skills/page'
+import { skills } from '../skills/skills'
 import styles from './skillItem.module.css'
 
 type SkillItemProps = {
