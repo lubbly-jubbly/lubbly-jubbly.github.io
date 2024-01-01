@@ -1,0 +1,6 @@
+.errorContainer {
+  height: 30px;
+  font-size: small;
+  padding-left: 0.25rem;
+  color: var(--dark-red);
+}

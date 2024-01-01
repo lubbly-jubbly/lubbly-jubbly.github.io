@@ -6,6 +6,12 @@ function Links() {
     <div className={styles.linksContainer}>
       <img src="./images/my-links-text.png" alt="my links text" width="120px" />
       <div className={styles.linksListContainer}>
+        <Link href="mailto:libby.rear@gmail.com" className={styles.contactLink}>
+          <div className={styles.iconContainer}>
+            <img src={'./images/envelope-icon.png'} alt="an envelope" />
+          </div>
+          <div>libby.rear@gmail.com</div>
+        </Link>
         <div className={styles.contactLink}>
           <div className={styles.iconContainer}>
             <img
@@ -15,12 +21,6 @@ function Links() {
           </div>
           <div>+44 7402 219371</div>
         </div>
-        <Link href="mailto:libby.rear@gmail.com" className={styles.contactLink}>
-          <div className={styles.iconContainer}>
-            <img src={'./images/envelope-icon.png'} alt="an envelope" />
-          </div>
-          <div>libby.rear@gmail.com</div>
-        </Link>
         <Link
           href="https://github.com/lubbly-jubbly"
           target="_blank"
