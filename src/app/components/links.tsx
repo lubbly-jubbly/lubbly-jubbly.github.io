@@ -4,18 +4,18 @@ import styles from './links.module.css'
 function Links() {
   return (
     <div className={styles.linksContainer}>
-      <img src="./images/my-links-text.png" alt="my links text" width="120px" />
+      <img src="/images/my-links-text.png" alt="my links text" width="120px" />
       <div className={styles.linksListContainer}>
         <Link href="mailto:libby.rear@gmail.com" className={styles.contactLink}>
           <div className={styles.iconContainer}>
-            <img src={'./images/envelope-icon.png'} alt="an envelope" />
+            <img src={'/images/envelope-icon.png'} alt="an envelope" />
           </div>
           <div>libby.rear@gmail.com</div>
         </Link>
         <div className={styles.contactLink}>
           <div className={styles.iconContainer}>
             <img
-              src={'./images/phone-icon.png'}
+              src={'/images/phone-icon.png'}
               alt="a red old-fashioned telephone"
             />
           </div>
@@ -27,10 +27,7 @@ function Links() {
           className={styles.contactLink}
         >
           <div className={styles.iconContainer}>
-            <img
-              src={'./images/github-drawn-icon.png'}
-              alt="a strange looking black cat"
-            />
+            <img src={'/images/github-icon.png'} alt="github logo" />
           </div>
           <div>lubbly-jubbly</div>
         </Link>
@@ -40,7 +37,7 @@ function Links() {
           className={styles.contactLink}
         >
           <div className={styles.iconContainer}>
-            <img src={'./images/linkedin-icon.png'} alt="the linkedin logo" />
+            <img src={'/images/linkedin-icon.png'} alt="the linkedin logo" />
           </div>
           <div>Libby Rear</div>
         </Link>

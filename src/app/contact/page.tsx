@@ -89,7 +89,7 @@ function ContactPage() {
       <div className={styles.contactContainer}>
         <div className={styles.contact}>
           <img
-            src="./images/get-in-touch-text.png"
+            src="/images/get-in-touch-text.png"
             alt="get in touch text"
             width={300}
           />

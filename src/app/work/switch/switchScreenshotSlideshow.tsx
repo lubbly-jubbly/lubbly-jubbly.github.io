@@ -4,7 +4,7 @@ import 'react-slideshow-image/dist/styles.css'
 import styles from './switchScreenshotSlideshow.module.css'
 
 function SwitchScreenshotSlideshow() {
-  const imagesBaseUrl = './images/switchScreenshots/'
+  const imagesBaseUrl = '/images/switchScreenshots/'
   const images: {
     url: string
     caption: JSX.Element
@@ -188,7 +188,6 @@ function SwitchScreenshotSlideshow() {
           src={imagesBaseUrl + url}
           alt="a screenshot of Switch"
           width={'100%'}
-          className={styles.slideImage}
         />
       </div>
       <p className={styles.caption}>{caption}</p>
@@ -196,15 +195,17 @@ function SwitchScreenshotSlideshow() {
   )
 
   return (
-    <Slide>
-      {images.map((slideImages, slideIndex) => (
-        <div key={slideIndex} className={styles.slide}>
-          {slideImages.map((image, index) =>
-            imageWithCaption(image.url, image.caption)
-          )}
-        </div>
-      ))}
-    </Slide>
+    <div className={styles.slideshow}>
+      <Slide>
+        {images.map((slideImages, slideIndex) => (
+          <div key={slideIndex} className={styles.slide}>
+            {slideImages.map((image, index) =>
+              imageWithCaption(image.url, image.caption)
+            )}
+          </div>
+        ))}
+      </Slide>
+    </div>
   )
 }
 

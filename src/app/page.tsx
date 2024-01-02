@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import styles from './homepage.module.css'
 
 function HomePage() {
@@ -11,7 +10,7 @@ function HomePage() {
         </div>
         <div className="m-5">
           <img
-            src="./images/rome-libby.jpeg"
+            src="/images/rome-libby.jpeg"
             alt="me"
             className={styles.romeLibby}
           />

@@ -9,10 +9,10 @@ const Navbar = () => {
 
   const audioRef = useRef<HTMLAudioElement | null>(null)
 
-  const paperAudioUrl = './sounds/crumpling-paper.mp3'
-  const briefcaseAudioUrl = './sounds/briefcase-opening.mp3'
-  const plantAudioUrl = './sounds/plant-growing.mp3'
-  const telephoneAudioUrl = './sounds/telephone-ringing.mp3'
+  const paperAudioUrl = '/sounds/crumpling-paper.mp3'
+  const briefcaseAudioUrl = '/sounds/briefcase-opening.mp3'
+  const plantAudioUrl = '/sounds/plant-growing.mp3'
+  const telephoneAudioUrl = '/sounds/telephone-ringing.mp3'
 
   const playAudio = (audioPath: string) => {
     if (audioRef.current !== null) {
@@ -49,7 +49,7 @@ const Navbar = () => {
         href={'/'}
         onClick={() => setActiveNavItem('home')}
       >
-        <img src="./images/libby-rear-text.png" alt="libby rear" width={300} />
+        <img src="/images/libby-rear-text.png" alt="libby rear" width={300} />
       </Link>
       <nav>
         <ul className={styles.navList}>
@@ -72,8 +72,8 @@ const Navbar = () => {
                     src={
                       hoveredNavItem === 'briefcase' ||
                       activeNavItem === 'briefcase'
-                        ? './images/briefcase-open.png'
-                        : './images/briefcase-closed.png'
+                        ? '/images/briefcase-open.png'
+                        : '/images/briefcase-closed.png'
                     }
                     alt="briefcase"
                     className={
@@ -88,8 +88,8 @@ const Navbar = () => {
                   <img
                     src={
                       activeNavItem === 'briefcase'
-                        ? './images/my-work-text-active.png'
-                        : './images/my-work-text.png'
+                        ? '/images/my-work-text-active.png'
+                        : '/images/my-work-text.png'
                     }
                     alt="my work text"
                     height="40px"
@@ -114,8 +114,8 @@ const Navbar = () => {
                   <img
                     src={
                       hoveredNavItem === 'plant' || activeNavItem === 'plant'
-                        ? './images/plant-flowered.png'
-                        : './images/plant-baby.png'
+                        ? '/images/plant-flowered.png'
+                        : '/images/plant-baby.png'
                     }
                     alt="a potted plant"
                     className={
@@ -129,8 +129,8 @@ const Navbar = () => {
                   <img
                     src={
                       activeNavItem === 'plant'
-                        ? './images/skills-text-active.png'
-                        : './images/skills-text.png'
+                        ? '/images/skills-text-active.png'
+                        : '/images/skills-text.png'
                     }
                     alt="my work text"
                     height="40px"
@@ -155,8 +155,8 @@ const Navbar = () => {
                   <img
                     src={
                       hoveredNavItem === 'paper'
-                        ? './images/crumpled-paper.png'
-                        : './images/paper.png'
+                        ? '/images/crumpled-paper.png'
+                        : '/images/paper.png'
                     }
                     alt="bit of paper"
                     className={
@@ -168,7 +168,7 @@ const Navbar = () => {
                 </div>
                 <div className="mt-2">
                   <img
-                    src={'./images/cv-text.png'}
+                    src={'/images/cv-text.png'}
                     alt="cv text"
                     height="32px"
                   />
@@ -195,8 +195,8 @@ const Navbar = () => {
                     src={
                       hoveredNavItem === 'telephone' ||
                       activeNavItem === 'telephone'
-                        ? './images/telephone-ringing.png'
-                        : './images/telephone.png'
+                        ? '/images/telephone-ringing.png'
+                        : '/images/telephone.png'
                     }
                     alt="a red old-fashioned telephone"
                     className={
@@ -211,8 +211,8 @@ const Navbar = () => {
                   <img
                     src={
                       activeNavItem === 'telephone'
-                        ? './images/contact-me-text-active.png'
-                        : './images/contact-me-text.png'
+                        ? '/images/contact-me-text-active.png'
+                        : '/images/contact-me-text.png'
                     }
                     alt="contact me text"
                     height="40px"

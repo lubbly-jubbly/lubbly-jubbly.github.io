@@ -16,6 +16,7 @@
   --orange: #f47d11;
   --purple: #9847d4;
   --yellow: #fecb00;
+  --pale-yellow: #f8fae3;
 
   --languages: #d15441;
   --libraries-and-frameworks: #4182d1;
@@ -107,9 +108,10 @@ button:active {
   border: none;
   border-radius: 10px;
   padding: 5px 10px;
-  background: #f8fae3;
+  background: var(--pale-yellow);
   vertical-align: top;
 }
+
 .input:focus {
   outline: none;
 }

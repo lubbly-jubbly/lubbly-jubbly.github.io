@@ -1,9 +1,9 @@
-import SwitchPage from './switch/page'
+import Link from 'next/link'
 
 function WorkPage() {
   return (
     <div>
-      <SwitchPage />
+      <Link href="./work/switch">Switch</Link>
     </div>
   )
 }

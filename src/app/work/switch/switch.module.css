@@ -2,10 +2,34 @@
   font-size: 50px;
   color: var(--switch-orange);
   font-family: 'simply-rounded';
+  margin-right: 1rem;
 }
 
 .switchTitleContainer {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.switchTitleAndIcons {
+  display: flex;
+  align-items: center;
+}
+
+.iconsContainer {
+  display: flex;
+}
+
+.icon {
+  width: 50px;
+}
+
+.headerPopup {
+  width: 75%;
+  margin: 0 auto;
+}
+
+.headerPopup iframe {
+  width: 100%;
+  margin: 0 auto;
 }
