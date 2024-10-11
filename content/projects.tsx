@@ -10,7 +10,7 @@ export type Project = {
   date: string
 }
 
-export const PROJECTS = {
+export const PROJECTS: Record<string, Project> = {
   switch: {
     name: 'Switch',
     technologies: [
@@ -87,4 +87,4 @@ export const PROJECTS = {
     logo: <img src="images/gce-logo.png" alt="GCE logo" />,
     date: 'Jan 2024 - Present',
   },
-} as const satisfies Record<string, Project>
+}
