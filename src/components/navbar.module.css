@@ -1,10 +1,3 @@
-.navList {
-  list-style-type: none;
-  display: flex;
-  justify-content: space-between;
-  padding: 0;
-}
-
 .navItemContainer {
   display: flex;
   flex-direction: column;
@@ -27,28 +20,56 @@
   justify-content: flex-end;
 }
 
-.cvLink {
-  width: 100%;
-  height: auto;
-  position: relative;
-  bottom: 0px;
-}
-
-.cvLinkActive {
-  width: 100%;
-  height: auto;
-  opacity: 80%;
-  position: relative;
-  bottom: 0px;
-}
-
 .briefcaseContainer {
   width: 100px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
 }
+.plantContainer {
+  width: 90px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: float;
+  overflow: visible;
+}
+.telephoneContainer {
+  width: 110px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.cvLink {
+  width: 100%;
+  height: auto;
+  position: relative;
+  bottom: 0px;
+}
 .workLink {
+  width: 100%;
+  height: auto;
+  opacity: 80%;
+  position: relative;
+  bottom: 0px;
+}
+.skillsLink {
+  width: 100%;
+  height: auto;
+  opacity: 80%;
+  position: relative;
+  bottom: 0px;
+}
+.contactLink {
+  width: 100%;
+  height: auto;
+  opacity: 70%;
+  position: relative;
+  bottom: 0px;
+}
+
+.cvLinkActive {
   width: 100%;
   height: auto;
   opacity: 80%;
@@ -62,22 +83,6 @@
   position: relative;
   bottom: 0px;
 }
-
-.plantContainer {
-  width: 90px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  position: float;
-  overflow: visible;
-}
-.skillsLink {
-  width: 100%;
-  height: auto;
-  opacity: 80%;
-  position: relative;
-  bottom: 0px;
-}
 .skillsLinkActive {
   width: 100%;
   height: auto;
@@ -85,20 +90,6 @@
   position: relative;
   bottom: 0px;
   overflow: visible;
-}
-
-.telephoneContainer {
-  width: 110px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-}
-.contactLink {
-  width: 100%;
-  height: auto;
-  opacity: 70%;
-  position: relative;
-  bottom: 0px;
 }
 .contactLinkActive {
   width: 100%;

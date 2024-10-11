@@ -1,8 +1,6 @@
 .switchTitle {
-  font-size: 50px;
-  color: var(--switch-orange);
-  font-family: 'simply-rounded';
-  margin-right: 1rem;
+  margin-bottom: 0;
+  margin-right: 0.5rem;
 }
 
 .switchTitleContainer {
@@ -21,7 +19,7 @@
 }
 
 .icon {
-  width: 50px;
+  width: 40px;
 }
 
 .headerPopup {

@@ -1,5 +1,4 @@
 'use client'
-import SkillItem from '@/app/components/skillItem'
 import Link from 'next/link'
 import 'react-slideshow-image/dist/styles.css'
 import SwitchScreenshotSlideshow from './switchScreenshotSlideshow'
@@ -7,19 +6,16 @@ import styles from './switch.module.css'
 import { useState } from 'react'
 import ModalVideo from 'react-modal-video'
 import 'react-modal-video/css/modal-video.min.css'
+import SkillList from '@/components/skillList'
+import { TECHNOLOGIES } from '../../../content/technologies'
+import { PROJECTS } from '../../../content/projects'
 
-function SwitchPage() {
-  const technologies = [
-    'React Native',
-    'JavaScript',
-    'Firebase Realtime DB',
-    'Firebase Auth',
-    'Figma',
-    'Jest',
-  ]
-
+function Switch() {
   const [hoveredIcon, setHoveredIcon] = useState<string | null>(null)
   const [modal, setModal] = useState(false)
+
+  const { date, logo, name, projectType, shortDescription, technologies, url } =
+    PROJECTS.switch
 
   return (
     <div>
@@ -32,7 +28,7 @@ function SwitchPage() {
       <div>
         <div className={styles.switchTitleContainer}>
           <div className={styles.switchTitleAndIcons}>
-            <div className={styles.switchTitle}>Switch</div>
+            <h1 className={styles.switchTitle}>Switch</h1>
             <div className={styles.iconsContainer}>
               <Link
                 href="https://github.com/lubbly-jubbly"
@@ -65,24 +61,34 @@ function SwitchPage() {
               </div>
             </div>
           </div>
-          <div className="skillItemsContainer">
-            {technologies.map((language, index) => (
-              <SkillItem text={language} key={index} />
-            ))}
+          <div>
+            {projectType}
+            <span className="dateText">{date}</span>
           </div>
         </div>
+        <div className="my-3">
+          <SkillList technologies={technologies} />
+        </div>
         <div className="mb-4">
-          My final project for my Software Development MSc was a rota management
-          app for hospitality workplaces.{' '}
+          A rota management app aimed at hospitality businesses that creates a
+          rota based on the availability and preferences of employees. The app
+          allows employees to request time off,
+          {/* This involved solving a constraint satisfaction problem, for which I
+          created a modified greedy algorithm using JavaScript. Googleʼs
+          Firebase Realtime Database and Authentication were used for the
+          projectʼs database and authentication. */}
         </div>
         <SwitchScreenshotSlideshow />
       </div>
       <div>
-        <h2>Scheduling Algorithm</h2>
+        <h3>Front-end design</h3>
+        <p>Every employee is assigned a colour.</p>
+        <br />
+        <h3>Scheduling Algorithm</h3>
         <p>A modified greedy algorithm was used to generate the rota.</p>
       </div>
     </div>
   )
 }
 
-export default SwitchPage
+export default Switch

@@ -2,5 +2,6 @@
   max-width: 75rem;
   padding: 0 3rem;
   margin: 3rem auto 6rem;
-  font-family: 'Inconsolata';
+  font-family: var(--inconsolata);
+  font-weight: 300;
 }

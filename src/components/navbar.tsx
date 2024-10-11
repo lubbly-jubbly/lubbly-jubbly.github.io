@@ -44,15 +44,13 @@ const Navbar = () => {
 
   return (
     <div>
-      <Link
-        className={'d-flex justify-content-center'}
-        href={'/'}
-        onClick={() => setActiveNavItem('home')}
-      >
-        <img src="/images/libby-rear-text.png" alt="libby rear" width={300} />
-      </Link>
+      <div className={'d-flex justify-content-center'}>
+        <Link href={'/'} onClick={() => setActiveNavItem('home')}>
+          <img src="/images/libby-rear-text.png" alt="libby rear" width={300} />
+        </Link>
+      </div>
       <nav>
-        <ul className={styles.navList}>
+        <ul className="list-none flex justify-between p-0">
           <li>
             <Link href="/work">
               <div
@@ -92,7 +90,7 @@ const Navbar = () => {
                         : '/images/my-work-text.png'
                     }
                     alt="my work text"
-                    height="40px"
+                    className="h-10"
                   />
                 </div>
               </div>
@@ -132,8 +130,8 @@ const Navbar = () => {
                         ? '/images/skills-text-active.png'
                         : '/images/skills-text.png'
                     }
-                    alt="my work text"
-                    height="40px"
+                    alt="skills text"
+                    className="h-10"
                   />
                 </div>
               </div>
@@ -170,7 +168,7 @@ const Navbar = () => {
                   <img
                     src={'/images/cv-text.png'}
                     alt="cv text"
-                    height="32px"
+                    className="h-8"
                   />
                 </div>
               </div>
@@ -215,7 +213,7 @@ const Navbar = () => {
                         : '/images/contact-me-text.png'
                     }
                     alt="contact me text"
-                    height="40px"
+                    className="h-10"
                   />
                 </div>
               </div>

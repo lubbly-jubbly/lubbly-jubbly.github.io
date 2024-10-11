@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import styles from './contact.module.css'
-import FormInput from '../components/formInput'
+import FormInput from '../../components/formInput'
 
 function ContactPage() {
   const defaultInputErrors = {

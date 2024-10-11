@@ -1,0 +1,11 @@
+.vorTitleContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.vorTitle {
+  color: dodgerblue;
+  font-weight: bolder;
+  margin-bottom: 0;
+}

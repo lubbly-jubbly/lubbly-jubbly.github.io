@@ -1,18 +1,73 @@
-.skillListsContainer {
-  display: flex;
-  flex-direction: column;
-  row-gap: 1.5rem;
+@keyframes moveX {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(100vw - 100%));
+  }
 }
 
-.skillList {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
+@keyframes moveY {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(calc(100vh - 100%));
+  }
 }
 
-.category {
-  white-space: nowrap;
-  color: black;
-  font-family: 'Inconsolata';
-  font-size: 20px;
+@keyframes grid {
+  100% {
+    transform: translateY(calc(100vh));
+  }
+}
+
+.item {
+  transition: transform 2s ease-in;
+  background-color: rgb(97, 154, 154);
+}
+.animateMoveX {
+  animation: moveX var(--x-speed) linear infinite alternate;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* .animateGrid {
+  animation: grid 2s forwards;
+  animation-play-state: paused;
+} */
+
+/* .animateMoveY {
+  animation: moveY var(--y-speed) linear infinite alternate;
+  position: absolute;
+} */
+
+.animatedElement {
+  position: absolute;
+  animation: moveY var(--y-speed) linear infinite alternate;
+}
+
+.paused {
+  animation-play-state: paused;
+}
+
+@keyframes testmove {
+  0% {
+    transform: translate(0);
+  }
+  100% {
+    transform: translate(calc(100vw - 100%), calc(100vh - 100%));
+  }
+}
+
+.testanimatedelement {
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: testmove var(--y-speed) linear infinite alternate;
+}
+
+.testpaused {
+  animation-play-state: paused;
 }
