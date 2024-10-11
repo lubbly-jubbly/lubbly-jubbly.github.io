@@ -1,11 +1,11 @@
 import 'bootstrap/dist/css/bootstrap.css'
 import { Metadata } from 'next'
+import { Inconsolata, Roboto } from 'next/font/google'
 import React, { ReactNode } from 'react'
 import '../../styles/globals.css'
 import Links from '../components/links'
 import Navbar from '../components/navbar'
 import styles from './layout.module.css'
-import { Roboto, Inconsolata } from 'next/font/google'
 
 export const metadata: Metadata = {
   title: 'Libby',

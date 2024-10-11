@@ -1,7 +1,4 @@
-import SkillItem from '@/components/skillItem'
-import React from 'react'
 import styles from './vor.module.css'
-import SkillList from '@/components/skillList'
 
 function VorPage() {
   const technologies = [

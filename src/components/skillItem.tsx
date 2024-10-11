@@ -1,5 +1,4 @@
 import { Technology } from '../../content/technologies'
-import styles from './skillItem.module.css'
 
 type SkillItemProps = {
   tech: Technology

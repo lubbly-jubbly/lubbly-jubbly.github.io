@@ -1,10 +1,10 @@
 'use client'
+import Navbar from '@/components/navbar'
+import Switch from '@/components/switch/switch'
 import { useEffect, useState } from 'react'
 import { Project, PROJECTS } from '../../../content/projects'
 import { ScrollGallery } from '../../components/scrollGallery'
 import WorkItem from './workItem'
-import Switch from '@/components/switch/switch'
-import Navbar from '@/components/navbar'
 
 function WorkPage() {
   const [activeProject, setActiveProject] = useState<Project | null>(null)

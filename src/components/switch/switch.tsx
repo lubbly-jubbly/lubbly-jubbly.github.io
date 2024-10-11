@@ -1,14 +1,13 @@
 'use client'
+import SkillList from '@/components/skillList'
 import Link from 'next/link'
-import 'react-slideshow-image/dist/styles.css'
-import SwitchScreenshotSlideshow from './switchScreenshotSlideshow'
-import styles from './switch.module.css'
 import { useState } from 'react'
 import ModalVideo from 'react-modal-video'
 import 'react-modal-video/css/modal-video.min.css'
-import SkillList from '@/components/skillList'
-import { TECHNOLOGIES } from '../../../content/technologies'
+import 'react-slideshow-image/dist/styles.css'
 import { PROJECTS } from '../../../content/projects'
+import styles from './switch.module.css'
+import SwitchScreenshotSlideshow from './switchScreenshotSlideshow'
 
 function Switch() {
   const [hoveredIcon, setHoveredIcon] = useState<string | null>(null)

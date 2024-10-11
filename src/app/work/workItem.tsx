@@ -1,5 +1,4 @@
 import SkillList from '@/components/skillList'
-import Link from 'next/link'
 import { Project } from '../../../content/projects'
 
 type WorkItemProps = {
