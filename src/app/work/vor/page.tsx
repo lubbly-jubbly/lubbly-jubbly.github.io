@@ -24,9 +24,9 @@ function VorPage() {
           <span className="dateText">Nov 2022 - Present</span>
         </div>
       </div>
-      <div className="my-3">
+      {/* <div className="my-3">
         <SkillList items={technologies} />
-      </div>
+      </div> */}
       <p>
         My current work is for an operations management and emissions reduction
         platform for the oil and gas industry.
