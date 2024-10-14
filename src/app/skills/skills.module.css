@@ -33,16 +33,6 @@
   left: 0;
 }
 
-/* .animateGrid {
-  animation: grid 2s forwards;
-  animation-play-state: paused;
-} */
-
-/* .animateMoveY {
-  animation: moveY var(--y-speed) linear infinite alternate;
-  position: absolute;
-} */
-
 .animatedElement {
   position: absolute;
   animation: moveY var(--y-speed) linear infinite alternate;
@@ -53,19 +43,60 @@
 }
 
 @keyframes testmove {
+  100% {
+    top: var(--y-diff);
+    left: var(--x-diff);
+  }
+}
+
+@keyframes fade-in {
   0% {
-    transform: translate(0);
+    opacity: 0%;
   }
   100% {
-    transform: translate(calc(100vw - 100%), calc(100vh - 100%));
+    opacity: 100%;
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 100%;
+  }
+  100% {
+    opacity: 0%;
+  }
+}
+
+@keyframes wiggle {
+  0%,
+  100% {
+    transform: rotate(-5deg);
+  }
+  50% {
+    transform: rotate(5deg);
   }
 }
 
 .testanimatedelement {
-  position: absolute;
-  top: 0;
-  left: 0;
-  animation: testmove var(--y-speed) linear infinite alternate;
+  animation: testmove 0.7s ease-in, fade-out 0.5s linear;
+  animation-fill-mode: forwards, forwards;
+  animation-delay: 0ms, 2s;
+}
+
+.iconFadeOut {
+  animation: wiggle 0.2s ease-in-out infinite, fade-out 0.2s linear;
+  animation-fill-mode: forwards;
+  animation-delay: 0ms, 0.7s;
+}
+
+.gridFadeIn {
+  animation: fade-in 1s linear, fade-in 1s linear;
+  animation-fill-mode: forwards;
+  animation-delay: 0.7s;
+}
+
+.grid {
+  opacity: 0;
 }
 
 .testpaused {
