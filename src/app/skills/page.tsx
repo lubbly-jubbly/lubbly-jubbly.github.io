@@ -91,8 +91,8 @@ function SkillsPage() {
 
   const move = (e: MouseEvent) => {
     if (activeImage) {
-      const newX = e.clientX - 80
-      const newY = e.clientY - 30
+      const newX = e.clientX - 60
+      const newY = e.clientY - 20 + window.scrollY
 
       activeImage.style.left = `${newX}px`
       activeImage.style.top = `${newY}px`
@@ -173,7 +173,7 @@ function SkillsPage() {
   }, [positions, directions, netMode, move])
 
   return (
-    <div className="w-100" style={{ cursor: cursor }}>
+    <div className={`w-100`} style={{ cursor: cursor }}>
       <Typewriter
         text="Oh no! Who let the skills escape! Give me a hand, would you?"
         className="text-xl text-center"
@@ -190,16 +190,18 @@ function SkillsPage() {
           width={130}
           className={netMoved ? 'invisible' : 'hidden'}
         />
-        <img
-          ref={netRef}
-          onMouseDown={pickUpNet(netRef)}
-          src={'images/net.png'}
-          width={130}
-          // className={`-rotate-[60deg] hover:-rotate-90 transition-transform duration-300 ${
-          //   netMoved ? 'absolute' : ''
-          // }`}
-          className={`${netMoved ? 'absolute' : ''}`}
-        />
+        <button>
+          <img
+            ref={netRef}
+            onMouseDown={pickUpNet(netRef)}
+            src={'images/net.png'}
+            width={130}
+            className={`-rotate-[60deg] hover:-rotate-90 transition-transform duration-300 ${
+              netMoved ? 'absolute' : ''
+            }`}
+            //className={`${netMoved ? 'absolute' : ''}`}
+          />
+        </button>
       </div>
       <div className="grid grid-cols-7 gap-10">
         {Object.keys(TECHNOLOGIES).map((tech, i) => (
