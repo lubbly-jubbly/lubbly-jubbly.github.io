@@ -170,7 +170,7 @@ function SkillsPage() {
       animationRequests.forEach((request) => cancelAnimationFrame(request))
       document.removeEventListener('mousemove', move)
     }
-  }, [positions, directions, netMode, move])
+  }, [positions, directions, netMode, move, animationRequests, caughtIcons])
 
   return (
     <div className={`w-100`} style={{ cursor: cursor }}>
@@ -182,11 +182,13 @@ function SkillsPage() {
         <img
           onClick={stopAnimations}
           src={'images/whistle.webp'}
+          alt={'a silver whistle'}
           width={100}
           className="hover:rotate-6 transition-transform duration-300"
         />
         <img
           src={'images/net.png'}
+          alt={'blank space'}
           width={130}
           className={netMoved ? 'invisible' : 'hidden'}
         />
@@ -195,17 +197,18 @@ function SkillsPage() {
             ref={netRef}
             onMouseDown={pickUpNet(netRef)}
             src={'images/net.png'}
+            alt={'a net'}
             width={130}
             className={`-rotate-[60deg] hover:-rotate-90 transition-transform duration-300 ${
               netMoved ? 'absolute' : ''
             }`}
-            //className={`${netMoved ? 'absolute' : ''}`}
           />
         </button>
       </div>
       <div className="grid grid-cols-7 gap-10">
         {Object.keys(TECHNOLOGIES).map((tech, i) => (
           <div
+            key={tech}
             ref={(element) =>
               element &&
               !gridRef?.current.includes(element) &&
