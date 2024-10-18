@@ -185,13 +185,15 @@ function SkillsPage() {
         className="text-xl text-center"
       />
       <div className="flex justify-center items-center gap-8 py-8 z-10">
-        <img
-          onClick={stopAnimations}
-          src={'images/whistle.webp'}
-          alt={'a silver whistle'}
-          width={100}
-          className="hover:rotate-6 transition-transform duration-300"
-        />
+        <button>
+          <img
+            onClick={stopAnimations}
+            src={'images/whistle.webp'}
+            alt={'a silver whistle'}
+            width={100}
+            className="hover:rotate-6 transition-transform duration-300"
+          />
+        </button>
         <img
           src={'images/net.png'}
           alt={'blank space'}
@@ -248,9 +250,9 @@ function SkillsPage() {
               '--y-diff': `${gridPositions[i].y}px`,
             } as React.CSSProperties
           }
-          className={`${linedUp ? styles.testanimatedelement : ''} ${
-            caughtIcons[i] ? styles.iconFadeOut : ''
-          }`}
+          className={`absolute bg-no-repeat bg-[length:75px] bg-center ${
+            linedUp ? styles.testanimatedelement : ''
+          } ${caughtIcons[i] ? styles.iconFadeOut : ''}`}
           onMouseOver={() => netMode && catchIcon(i)}
         >
           <SkillItem tech={TECHNOLOGIES[tech]} />
