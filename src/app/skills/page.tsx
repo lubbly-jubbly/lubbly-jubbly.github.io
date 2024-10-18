@@ -18,9 +18,11 @@ function SkillsPage() {
     return random * (max - min) + min
   }
 
-  const getRandomXPosition = () => 20 + Math.random() * (window.innerWidth - 40)
+  const windowIsDefined = typeof window !== 'undefined'
+  const getRandomXPosition = () =>
+    windowIsDefined ? 20 + Math.random() * (window.innerWidth - 40) : 0
   const getRandomYPosition = () =>
-    20 + Math.random() * (window.innerHeight - 40)
+    windowIsDefined ? 20 + Math.random() * (window.innerHeight - 40) : 0
 
   const [gridPositions, setGridPositions] = useState(
     Object.keys(TECHNOLOGIES).map(() => ({ x: 0, y: 0 }))
@@ -50,7 +52,10 @@ function SkillsPage() {
     const renderedGridPositions = gridRef.current.map((ref) => {
       if (ref) {
         const rect = ref.getBoundingClientRect()
-        return { x: rect.left, y: rect.top + window.scrollY }
+        return {
+          x: rect.left,
+          y: rect.top + (windowIsDefined ? window.scrollY : 0),
+        }
       }
       return { x: 0, y: 0 }
     })
@@ -68,15 +73,16 @@ function SkillsPage() {
   }
 
   const stopAnimations = () => {
-    animationRequests.forEach((animationRequest) =>
-      window.cancelAnimationFrame(animationRequest)
+    animationRequests.forEach(
+      (animationRequest) =>
+        windowIsDefined && window.cancelAnimationFrame(animationRequest)
     )
 
     lineUp()
   }
 
   const catchIcon = (index: number) => {
-    window.cancelAnimationFrame(animationRequests[index])
+    windowIsDefined && window.cancelAnimationFrame(animationRequests[index])
 
     setCaughtIcons((prevCaughtIcons) =>
       prevCaughtIcons.map((status, j) => (index === j ? true : status))
@@ -92,7 +98,7 @@ function SkillsPage() {
   const move = (e: MouseEvent) => {
     if (activeImage) {
       const newX = e.clientX - 60
-      const newY = e.clientY - 20 + window.scrollY
+      const newY = e.clientY - 20 + (windowIsDefined ? window.scrollY : 0)
 
       activeImage.style.left = `${newX}px`
       activeImage.style.top = `${newY}px`
