@@ -1,9 +1,12 @@
 'use client'
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import FormInput from '../../components/formInput'
 import styles from './contact.module.css'
+import { ReactSketchCanvas, ReactSketchCanvasRef } from 'react-sketch-canvas'
 
 function ContactPage() {
+  const canvasRef = useRef<ReactSketchCanvasRef | null>(null)
+
   const defaultInputErrors = {
     name: '',
     email: '',
@@ -23,14 +26,20 @@ function ContactPage() {
   const [success, setSuccess] = React.useState<boolean>(false)
 
   async function handleSubmit(event: any) {
+    const drawingSvg = await canvasRef?.current?.exportSvg()
+
     event.preventDefault()
     const formData = new FormData(event.target)
 
+    if (drawingSvg) {
+      formData.append('drawing', drawingSvg)
+    }
     formData.append('access_key', 'ac3442b0-b10c-475b-b0d6-0a2aabaddcc5')
 
     const object = Object.fromEntries(formData)
-    const json = JSON.stringify(object)
 
+    const json = JSON.stringify(object)
+    console.log(json)
     const response = await fetch('https://api.web3forms.com/submit', {
       method: 'POST',
       headers: {
@@ -84,10 +93,14 @@ function ContactPage() {
     handleSubmit(event)
   }
 
+  const clearDrawing = () => {
+    canvasRef?.current?.clearCanvas()
+  }
+
   return (
     <div>
-      <div className={styles.contactContainer}>
-        <div className={styles.contact}>
+      <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center px-12 w-[500px]">
           <img
             src="/images/get-in-touch-text.png"
             alt="get in touch text"
@@ -97,8 +110,12 @@ function ContactPage() {
             I'd love to hear from you! Please get in touch using the form or
             through any of the links below.
           </div>
-          <form onSubmit={validateInputs} className={styles.form} noValidate>
-            <div className={styles.formInputsContainer}>
+          <form
+            onSubmit={validateInputs}
+            className="flex flex-col items-center w-full"
+            noValidate
+          >
+            <div className="flex flex-col w-full">
               <FormInput
                 type="text"
                 name="name"
@@ -118,10 +135,35 @@ function ContactPage() {
                 error={inputErrors.message}
               />
             </div>
-
-            <button type="submit">Send Message</button>
+            <div className="relative w-full">
+              <p className="absolute text-placeholder-text top-1 left-2">
+                Draw Something
+              </p>
+              <button
+                type="button"
+                onClick={clearDrawing}
+                className="absolute top-1 right-2"
+              >
+                <img
+                  src="images/round-arrow.png"
+                  alt="restart arrow icon"
+                  width={40}
+                />
+              </button>
+              <ReactSketchCanvas
+                ref={canvasRef}
+                strokeWidth={1}
+                strokeColor="black"
+                className={
+                  'border-0 rounded-lg w-full pb-6 ' + styles.sketchCanvas
+                }
+              />
+            </div>
+            <button type="submit" className="bg-light-blue-grey rounded-lg p-2">
+              Send Message
+            </button>
             {success && (
-              <div className={styles.successMessage}>
+              <div className="pt-2 text-xs text-green">
                 Email sent! Thanks for contacting me.
               </div>
             )}

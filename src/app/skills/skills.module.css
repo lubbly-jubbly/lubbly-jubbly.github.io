@@ -90,7 +90,7 @@
 }
 
 .gridFadeIn {
-  animation: fade-in 1s linear, fade-in 1s linear;
+  animation: fade-in 1s linear;
   animation-fill-mode: forwards;
   animation-delay: 0.7s;
 }
@@ -101,4 +101,50 @@
 
 .testpaused {
   animation-play-state: paused;
+}
+
+/* .category {
+  position: relative;
+  display: inline-block;
+  border: 1px solid #b17461;
+  background-image: radial-gradient(circle, #b17461, #b17461);
+  background-color: #b17461;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: 0% 0%;
+  border-radius: 20px;
+  transition: background-size 4s, color 0.5s;
+}
+
+.category:hover {
+  background-size: 100% 100%;
+} */
+
+.category {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.category::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 300%;
+  background-color: var(--light-blue);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.5s;
+  z-index: 0;
+}
+
+.category.selected::before {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.category span {
+  position: relative;
+  z-index: 1;
 }

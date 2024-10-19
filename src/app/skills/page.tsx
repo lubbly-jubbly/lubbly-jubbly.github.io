@@ -1,7 +1,12 @@
 'use client'
 import SkillItem from '@/components/skillItem'
-import { useEffect, useRef, useState } from 'react'
-import { TECHNOLOGIES } from '../../../content/technologies'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import {
+  getNamesOfTechnologiesInCategory,
+  getTechnologiesInCategory,
+  TechCategory,
+  TECHNOLOGIES,
+} from '../../../content/technologies'
 import styles from './skills.module.css'
 import { Typewriter } from '@/components/typewriter'
 
@@ -12,6 +17,9 @@ function SkillsPage() {
     Array(technlogiesLength).fill(0)
   )
   const [cursor, setCursor] = useState('auto')
+  const [selectedCategory, setSelectedCategory] = useState<
+    TechCategory | 'All'
+  >('All')
 
   const getRandomBetween = (min: number, max: number) => {
     const random = Math.random()
@@ -95,15 +103,18 @@ function SkillsPage() {
   const [netMode, setNetMode] = useState(false)
   const [activeImage, setActiveImage] = useState<HTMLImageElement | null>(null)
 
-  const move = (e: MouseEvent) => {
-    if (activeImage) {
-      const newX = e.clientX - 60
-      const newY = e.clientY - 20 + (windowIsDefined ? window.scrollY : 0)
+  const move = useCallback(
+    (e: MouseEvent) => {
+      if (activeImage) {
+        const newX = e.clientX - 60
+        const newY = e.clientY - 20 + (windowIsDefined ? window.scrollY : 0)
 
-      activeImage.style.left = `${newX}px`
-      activeImage.style.top = `${newY}px`
-    }
-  }
+        activeImage.style.left = `${newX}px`
+        activeImage.style.top = `${newY}px`
+      }
+    },
+    [activeImage, windowIsDefined]
+  )
 
   const pickUpNet =
     (netRef: React.RefObject<HTMLImageElement>) => (e: React.MouseEvent) => {
@@ -129,6 +140,20 @@ function SkillsPage() {
       setCursor('auto')
       console.log('putting down net')
     }
+  }
+  console.log(getNamesOfTechnologiesInCategory(selectedCategory))
+  const postGameAnimations = () => {
+    // phew! thanks. Anyway...
+    // fade away
+    // Here's what I can do
+    // add filters (frontend, backend, data, ...)
+  }
+
+  const [clicked, setClicked] = useState(false)
+
+  const handleClick = () => {
+    setClicked(true)
+    setTimeout(() => setClicked(false), 500) // Reset the state after the animation duration
   }
 
   useEffect(() => {
@@ -180,10 +205,14 @@ function SkillsPage() {
 
   return (
     <div className={`w-100`} style={{ cursor: cursor }}>
-      <Typewriter
-        text="Oh no! Who let the skills escape! Give me a hand, would you?"
-        className="text-xl text-center"
-      />
+      {!linedUp ? (
+        <Typewriter
+          text="Oh no! Who let the skills escape! Give me a hand, would you?"
+          className="text-xl text-center"
+        />
+      ) : (
+        <Typewriter text="Phew! Thanks." className="text-xl text-center" />
+      )}
       <div className="flex justify-center items-center gap-8 py-8 z-10">
         <button>
           <img
@@ -196,7 +225,7 @@ function SkillsPage() {
         </button>
         <img
           src={'images/net.png'}
-          alt={'blank space'}
+          alt={''}
           width={130}
           className={netMoved ? 'invisible' : 'hidden'}
         />
@@ -213,6 +242,23 @@ function SkillsPage() {
           />
         </button>
       </div>
+      <div className="flex flex-row text-xs justify-between pb-4">
+        {(
+          ['All', ...Object.values(TechCategory)] as (TechCategory | 'All')[]
+        ).map((category) => (
+          <button
+            key={category}
+            className={`
+              py-1 px-1.5 rounded-xl 
+              ${styles.category} 
+              ${selectedCategory === category ? styles.selected : ''}
+            `}
+            onClick={() => setSelectedCategory(category)}
+          >
+            <span>{category}</span>
+          </button>
+        ))}
+      </div>
       <div className="grid grid-cols-7 gap-10">
         {Object.keys(TECHNOLOGIES).map((tech, i) => (
           <div
@@ -224,6 +270,13 @@ function SkillsPage() {
             }
             className={`${linedUp || caughtIcons[i] ? styles.gridFadeIn : ''} ${
               styles.grid
+            } ${
+              selectedCategory === 'All' ||
+              getTechnologiesInCategory(selectedCategory).includes(
+                TECHNOLOGIES[tech]
+              )
+                ? ''
+                : 'invisible'
             }`}
           >
             <SkillItem tech={TECHNOLOGIES[tech]} displayName key={i} />
@@ -240,12 +293,8 @@ function SkillsPage() {
           }
           style={
             {
-              position: 'absolute',
               left: positions[i].x,
               top: positions[i].y,
-              backgroundRepeat: 'no-repeat',
-              backgroundSize: '75px',
-              backgroundPosition: 'center',
               '--x-diff': `${gridPositions[i].x}px`,
               '--y-diff': `${gridPositions[i].y}px`,
             } as React.CSSProperties

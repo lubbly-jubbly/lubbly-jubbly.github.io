@@ -19,10 +19,14 @@ const FormInput: React.FC<FormInputProps> = ({
   return (
     <div>
       {textarea ? (
-        <textarea className="input" name={name} placeholder={placeholder} />
+        <textarea
+          className="input placeholder-placeholder-text"
+          name={name}
+          placeholder={placeholder}
+        />
       ) : (
         <input
-          className="input"
+          className="input placeholder-placeholder-text"
           type={type}
           name={name}
           placeholder={placeholder}

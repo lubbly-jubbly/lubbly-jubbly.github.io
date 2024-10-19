@@ -1,32 +1,4 @@
-.contactContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.contact {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0 3rem;
-  width: 500px;
-}
-
-.form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-}
-
-.formInputsContainer {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-
-.successMessage {
-  padding-top: 0.5rem;
-  font-size: smaller;
-  color: var(--green);
+.sketchCanvas svg g rect {
+  fill: var(--pale-yellow) !important;
+  rx: 8px;
 }

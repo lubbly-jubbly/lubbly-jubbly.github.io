@@ -27,6 +27,8 @@
   --libraries-and-frameworks: #0000ff;
   --data: #8a00da;
   --other: rgb(0, 124, 41);
+
+  --placeholder: #777c99;
 }
 
 /* FONTS */
@@ -64,13 +66,6 @@ body {
   background-color: var(--background);
 }
 
-/* .skillItemsContainer {
-  display: flex;
-  column-gap: 1rem;
-  row-gap: 0.5rem;
-  flex-wrap: wrap;
-} */
-
 button {
   border: none;
   background: none;
@@ -79,8 +74,8 @@ button {
 .input {
   width: 100%;
   border: none;
-  border-radius: 10px;
-  padding: 5px 10px;
+  border-radius: 8px;
+  padding: 0.25rem 0.5rem;
   background: var(--pale-yellow);
   vertical-align: top;
 }

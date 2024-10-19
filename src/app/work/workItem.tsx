@@ -13,13 +13,15 @@ function WorkItem(props: WorkItemProps) {
   return (
     <section
       key={name}
-      className="relative h-[300px] w-[320px] min-w-[320px] snap-start rounded-xl bg-clip-padding p-4 transition-[min-width,width,margin-left,opacity] duration-300 spacing-0 d:border-white/20 bg-[#f7fafa]"
+      className="relative h-[300px] w-[320px] min-w-[320px] snap-start rounded-xl bg-clip-padding p-4 transition-[min-width,width,margin-left,opacity] duration-300 spacing-0 d:border-white/20 bg-light-blue-grey"
     >
       <div
         onClick={props.onClick ? props.onClick : () => {}}
         className="flex flex-col justify-between h-100"
       >
         <div className="flex flex-col gap-y-3">
+          <img src="images/gce-screenshot-1.png" alt="" />
+
           <div className="flex flex-row items-center gap-x-4">
             <div className="w-11">{logo}</div>
             {name}
