@@ -183,7 +183,7 @@ export const TECHNOLOGIES: Record<string, Technology> = {
       TechCategory.frontend,
       TechCategory.languages,
     ],
-    icon: <i className="devicon-jest-plain colored"></i>,
+    icon: <i className="devicon-sass-plain colored"></i>,
   },
 }
 

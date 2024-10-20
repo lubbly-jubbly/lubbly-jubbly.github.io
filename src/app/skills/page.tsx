@@ -6,6 +6,7 @@ import {
   getTechnologiesInCategory,
   TechCategory,
   TECHNOLOGIES,
+  Technology,
 } from '../../../content/technologies'
 import styles from './skills.module.css'
 import { Typewriter } from '@/components/typewriter'
@@ -20,6 +21,8 @@ function SkillsPage() {
   const [selectedCategory, setSelectedCategory] = useState<
     TechCategory | 'All'
   >('All')
+  const [gameIsOver, setGameIsOver] = useState(false)
+  const [gameToolsShowing, setGameToolsShowing] = useState(false)
 
   const getRandomBetween = (min: number, max: number) => {
     const random = Math.random()
@@ -78,6 +81,9 @@ function SkillsPage() {
     }
     setGridPositions(renderedGridPositions)
     setLinedUp(true)
+    setTimeout(() => {
+      setGameIsOver(true)
+    }, 2000)
   }
 
   const stopAnimations = () => {
@@ -149,14 +155,22 @@ function SkillsPage() {
     // add filters (frontend, backend, data, ...)
   }
 
-  const [clicked, setClicked] = useState(false)
+  const gridIconOpacity = (i: number, tech: Technology) => {
+    const itemIsCaught = linedUp || caughtIcons[i]
+    const technologyIsInSelectedCategory =
+      selectedCategory === 'All' ||
+      getTechnologiesInCategory(selectedCategory).includes(tech)
 
-  const handleClick = () => {
-    setClicked(true)
-    setTimeout(() => setClicked(false), 500) // Reset the state after the animation duration
+    if (itemIsCaught && technologyIsInSelectedCategory) return 1
+    else if (itemIsCaught) return 0.1
+    else return 0
   }
 
   useEffect(() => {
+    const timer = setTimeout(() => {
+      setGameToolsShowing(true) // Set to true after 5 seconds
+    }, 50)
+
     Object.keys(TECHNOLOGIES).forEach((element, i) => {
       const icon = iconRef.current[i]
       if (icon) {
@@ -200,19 +214,31 @@ function SkillsPage() {
     return () => {
       animationRequests.forEach((request) => cancelAnimationFrame(request))
       document.removeEventListener('mousemove', move)
+      clearTimeout(timer)
     }
   }, [positions, directions, netMode, move, animationRequests, caughtIcons])
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setGameToolsShowing(true)
+    }, 3000)
+    return () => clearTimeout(timer)
+  }, [])
+
+  console.log(gameToolsShowing)
   return (
     <div className={`w-100`} style={{ cursor: cursor }}>
-      {!linedUp ? (
-        <Typewriter
-          text="Oh no! Who let the skills escape! Give me a hand, would you?"
-          className="text-xl text-center"
-        />
-      ) : (
-        <Typewriter text="Phew! Thanks." className="text-xl text-center" />
-      )}
+      <div className="h-10">
+        {!linedUp && (
+          <Typewriter
+            text="Oh no! Who let the skills escape! Give me a hand, would you?"
+            className="text-xl text-center"
+          />
+        )}
+        {gameIsOver && (
+          <Typewriter text="Phew! Thanks." className="text-xl text-center" />
+        )}
+      </div>
       <div className="flex justify-center items-center gap-8 py-8 z-10">
         <button>
           <img
@@ -220,7 +246,10 @@ function SkillsPage() {
             src={'images/whistle.webp'}
             alt={'a silver whistle'}
             width={100}
-            className="hover:rotate-6 transition-transform duration-300"
+            className={`${styles.tool} ${
+              gameToolsShowing ? styles['fade-in'] : ''
+            } ${gameIsOver ? styles['fade-out'] : ''}
+            }`}
           />
         </button>
         <img
@@ -236,8 +265,10 @@ function SkillsPage() {
             src={'images/net.png'}
             alt={'a net'}
             width={130}
-            className={`-rotate-[60deg] hover:-rotate-90 transition-transform duration-300 ${
-              netMoved ? 'absolute' : ''
+            className={`-rotate-[60deg] ${netMoved ? 'absolute' : ''} ${
+              styles.tool
+            }  ${gameToolsShowing ? styles['fade-in'] : ''} ${
+              gameIsOver ? styles['fade-out'] : ''
             }`}
           />
         </button>
@@ -260,26 +291,25 @@ function SkillsPage() {
         ))}
       </div>
       <div className="grid grid-cols-7 gap-10">
-        {Object.keys(TECHNOLOGIES).map((tech, i) => (
+        {Object.values(TECHNOLOGIES).map((tech, i) => (
           <div
-            key={tech}
+            key={tech.name}
             ref={(element) =>
               element &&
               !gridRef?.current.includes(element) &&
               gridRef?.current?.push(element)
             }
-            className={`${linedUp || caughtIcons[i] ? styles.gridFadeIn : ''} ${
-              styles.grid
-            } ${
-              selectedCategory === 'All' ||
-              getTechnologiesInCategory(selectedCategory).includes(
-                TECHNOLOGIES[tech]
-              )
-                ? ''
-                : 'invisible'
-            }`}
+            className={`
+              ${styles.grid}
+            `}
+            style={{
+              opacity: gridIconOpacity(i, tech),
+              transition: gameIsOver
+                ? 'opacity 0.5s ease'
+                : 'opacity 0.5s ease 0.7s',
+            }}
           >
-            <SkillItem tech={TECHNOLOGIES[tech]} displayName key={i} />
+            <SkillItem tech={tech} displayName key={i} />
           </div>
         ))}
       </div>
