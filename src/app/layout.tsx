@@ -16,36 +16,21 @@ type LayoutProps = {
   children: ReactNode
 }
 
-const roboto = Roboto({
-  weight: ['400', '700'],
-  style: ['normal', 'italic'],
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--roboto',
-})
-
-const inconsolata = Inconsolata({
-  weight: ['300', '400', '500', '700'],
-  style: ['normal'],
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--inconsolata',
-})
-
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/images/goose.png" />
         <link
           rel="stylesheet"
           type="text/css"
           href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
         />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@300&display=swap"
+          rel="stylesheet"
+        />
       </head>
-      <body
-        className={`${styles.layout} ${roboto.variable} ${inconsolata.variable}`}
-      >
+      <body className={`${styles.layout}`}>
         <Navbar />
         <div className="my-5">{children}</div>
         <Links />

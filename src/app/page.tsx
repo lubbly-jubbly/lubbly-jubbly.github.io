@@ -2,10 +2,7 @@ function HomePage() {
   return (
     <div>
       <div className="d-flex flex-column align-items-center mx-5">
-        <div>
-          Hello! I am a software developer, currently based in Glasgow,
-          Scotland.
-        </div>
+        <div>Hello! I am a software developer, currently based in Berlin.</div>
         <div className="my-3">
           <img src="/images/rome-libby.jpg" alt="me" className="max-w-full" />
         </div>

@@ -1,0 +1,23 @@
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes backspace {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0;
+  }
+}
+
+.typing {
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+}

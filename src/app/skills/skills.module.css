@@ -124,14 +124,24 @@
   transition: opacity 1s ease-in, filter 1s ease-in; /* Transition for opacity and blur */
 }
 
-.tool.fade-in {
+.tool.fadeIn {
   opacity: 1; /* Fully visible */
   filter: blur(0); /* No blur */
 }
 
-.tool.fade-out {
+.tool.fadeOut {
   opacity: 0; /* Invisible */
   filter: blur(10px); /* Blurred */
+}
+
+.categories {
+  opacity: 0;
+}
+
+.categories.fadeIn {
+  animation: fade-in 1s linear;
+  animation-fill-mode: forwards;
+  animation-delay: 0.7s;
 }
 
 /* .category {

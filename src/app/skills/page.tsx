@@ -22,7 +22,11 @@ function SkillsPage() {
     TechCategory | 'All'
   >('All')
   const [gameIsOver, setGameIsOver] = useState(false)
-  const [gameToolsShowing, setGameToolsShowing] = useState(false)
+  const [gameToolsShowing, setGameToolsShowing] = useState(true)
+  const [gameToolsFadingIn, setGameToolsFadingIn] = useState(false)
+
+  const [typewriterAnimationIsFinished, setTypewriterAnimationIsFinished] =
+    useState(false)
 
   const getRandomBetween = (min: number, max: number) => {
     const random = Math.random()
@@ -80,10 +84,7 @@ function SkillsPage() {
       })
     }
     setGridPositions(renderedGridPositions)
-    setLinedUp(true)
-    setTimeout(() => {
-      setGameIsOver(true)
-    }, 2000)
+    endGame()
   }
 
   const stopAnimations = () => {
@@ -96,11 +97,27 @@ function SkillsPage() {
   }
 
   const catchIcon = (index: number) => {
+    console.log(index)
     windowIsDefined && window.cancelAnimationFrame(animationRequests[index])
 
-    setCaughtIcons((prevCaughtIcons) =>
-      prevCaughtIcons.map((status, j) => (index === j ? true : status))
+    const newCaughtIcons = caughtIcons.map((status, j) =>
+      index === j ? true : status
     )
+
+    setCaughtIcons(newCaughtIcons)
+
+    if (newCaughtIcons.every((b) => b === true)) endGame()
+  }
+
+  const endGame = () => {
+    setLinedUp(true)
+
+    setTimeout(() => {
+      setGameIsOver(true)
+    }, 2000)
+    setTimeout(() => {
+      setGameToolsShowing(false)
+    }, 3000)
   }
 
   const netRef = useRef<HTMLImageElement | null>(null)
@@ -138,23 +155,6 @@ function SkillsPage() {
       }
     }
 
-  const putDownNet = () => {
-    if (netMode) {
-      document.removeEventListener('mousemove', move)
-      setNetMode(false)
-      setActiveImage(null)
-      setCursor('auto')
-      console.log('putting down net')
-    }
-  }
-  console.log(getNamesOfTechnologiesInCategory(selectedCategory))
-  const postGameAnimations = () => {
-    // phew! thanks. Anyway...
-    // fade away
-    // Here's what I can do
-    // add filters (frontend, backend, data, ...)
-  }
-
   const gridIconOpacity = (i: number, tech: Technology) => {
     const itemIsCaught = linedUp || caughtIcons[i]
     const technologyIsInSelectedCategory =
@@ -167,10 +167,6 @@ function SkillsPage() {
   }
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setGameToolsShowing(true) // Set to true after 5 seconds
-    }, 50)
-
     Object.keys(TECHNOLOGIES).forEach((element, i) => {
       const icon = iconRef.current[i]
       if (icon) {
@@ -214,81 +210,107 @@ function SkillsPage() {
     return () => {
       animationRequests.forEach((request) => cancelAnimationFrame(request))
       document.removeEventListener('mousemove', move)
-      clearTimeout(timer)
     }
   }, [positions, directions, netMode, move, animationRequests, caughtIcons])
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setGameToolsShowing(true)
+      setGameToolsFadingIn(true)
     }, 3000)
     return () => clearTimeout(timer)
   }, [])
+  console.log(netMode)
 
-  console.log(gameToolsShowing)
   return (
     <div className={`w-100`} style={{ cursor: cursor }}>
-      <div className="h-10">
+      <div className="h-8">
         {!linedUp && (
           <Typewriter
-            text="Oh no! Who let the skills escape! Give me a hand, would you?"
-            className="text-xl text-center"
+            textStrings={[
+              'Oh no! Who let the skills escape! Give me a hand, would you?',
+            ]}
+            classNames={['text-xl text-center']}
+            onFinish={() => {}}
           />
         )}
         {gameIsOver && (
-          <Typewriter text="Phew! Thanks." className="text-xl text-center" />
+          <Typewriter
+            textStrings={[
+              'Phew! Thanks.',
+              'Anyway...',
+              'Here are the technologies I know how to use.',
+            ]}
+            classNames={[
+              'text-xl text-center',
+              'text-xl text-center',
+              'text-xl text-center',
+            ]}
+            onFinish={() => setTypewriterAnimationIsFinished(true)}
+          />
         )}
       </div>
-      <div className="flex justify-center items-center gap-8 py-8 z-10">
-        <button>
-          <img
-            onClick={stopAnimations}
-            src={'images/whistle.webp'}
-            alt={'a silver whistle'}
-            width={100}
-            className={`${styles.tool} ${
-              gameToolsShowing ? styles['fade-in'] : ''
-            } ${gameIsOver ? styles['fade-out'] : ''}
-            }`}
-          />
-        </button>
-        <img
-          src={'images/net.png'}
-          alt={''}
-          width={130}
-          className={netMoved ? 'invisible' : 'hidden'}
-        />
-        <button>
-          <img
-            ref={netRef}
-            onMouseDown={pickUpNet(netRef)}
-            src={'images/net.png'}
-            alt={'a net'}
-            width={130}
-            className={`-rotate-[60deg] ${netMoved ? 'absolute' : ''} ${
-              styles.tool
-            }  ${gameToolsShowing ? styles['fade-in'] : ''} ${
-              gameIsOver ? styles['fade-out'] : ''
-            }`}
-          />
-        </button>
-      </div>
-      <div className="flex flex-row text-xs justify-between pb-4">
-        {(
-          ['All', ...Object.values(TechCategory)] as (TechCategory | 'All')[]
-        ).map((category) => (
-          <button
-            key={category}
-            className={`
+      <div className="h-24 flex flex-col justify-end">
+        {gameToolsShowing ? (
+          <div className="flex justify-center items-center gap-8 py-2  ">
+            <button disabled={!gameToolsFadingIn}>
+              <img
+                onClick={stopAnimations}
+                src={'images/whistle.webp'}
+                alt={'a silver whistle'}
+                width={70}
+                className={`${styles.tool} ${
+                  gameToolsFadingIn ? styles.fadeIn : ''
+                } ${gameIsOver ? styles.fadeOut : ''}
+            `}
+              />
+            </button>
+            <img
+              src={'images/net.png'}
+              alt={''}
+              width={100}
+              className={netMoved ? 'invisible' : 'hidden'}
+            />
+            <button disabled={!gameToolsFadingIn}>
+              <img
+                ref={netRef}
+                onMouseDown={pickUpNet(netRef)}
+                src={'images/net.png'}
+                alt={'a net'}
+                width={100}
+                className={`-rotate-[60deg] ${netMoved ? 'absolute' : ''} ${
+                  styles.tool
+                }  ${gameToolsFadingIn ? styles.fadeIn : ''} ${
+                  gameIsOver ? styles.fadeOut : ''
+                }`}
+              />
+            </button>
+          </div>
+        ) : (
+          <div
+            className={`flex flex-row text-xs justify-between pb-4 ${
+              styles.categories
+            } ${typewriterAnimationIsFinished ? styles.fadeIn : ''}`}
+          >
+            {(
+              ['All', ...Object.values(TechCategory)] as (
+                | TechCategory
+                | 'All'
+              )[]
+            ).map((category) => (
+              <button
+                key={category}
+                className={`
               py-1 px-1.5 rounded-xl 
               ${styles.category} 
               ${selectedCategory === category ? styles.selected : ''}
             `}
-            onClick={() => setSelectedCategory(category)}
-          >
-            <span>{category}</span>
-          </button>
-        ))}
+                onClick={() => setSelectedCategory(category)}
+              >
+                <span>{category}</span>
+              </button>
+            ))}
+          </div>
+        )}
       </div>
       <div className="grid grid-cols-7 gap-10">
         {Object.values(TECHNOLOGIES).map((tech, i) => (
