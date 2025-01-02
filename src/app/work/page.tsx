@@ -40,10 +40,11 @@ function WorkPage() {
         <WorkItem project={PROJECTS.pubble} />
         <WorkItem project={PROJECTS.vor} />
       </ScrollGallery> */}
-      <ProjectCard project={PROJECTS.gce} />
-      <ProjectCard project={PROJECTS.switch} />
-      <ProjectCard project={PROJECTS.vor} />
+      <ProjectCard project={PROJECTS.gce} alignment={'right'} />
+      <ProjectCard project={PROJECTS.switch} alignment={'left'} />
+      <ProjectCard project={PROJECTS.vor} alignment={'right'} />
       <div>ANKI</div>
+      <div>Various</div>
       {/* {projectDetailsComponent} */}
     </div>
   )
