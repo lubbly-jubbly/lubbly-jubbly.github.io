@@ -29,6 +29,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@300&display=swap"
           rel="stylesheet"
         />
+        <link rel="icon" type="image/x-icon" href="/images/favicon.png" />
       </head>
       <body className={`${styles.layout}`}>
         <Navbar />

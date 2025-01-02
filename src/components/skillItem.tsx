@@ -12,7 +12,7 @@ function SkillItem(props: SkillItemProps) {
       <div
         className={`${
           props.small ? 'text-l w-4 h-4' : 'text-2xl w-7 h-7'
-        } flex flex-col justify-center w-7 h-7`}
+        } flex flex-col justify-center`}
       >
         {props.tech.icon}
       </div>

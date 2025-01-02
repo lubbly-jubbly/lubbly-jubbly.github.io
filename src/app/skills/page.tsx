@@ -1,15 +1,14 @@
 'use client'
 import SkillItem from '@/components/skillItem'
+import { Typewriter } from '@/components/typewriter'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import {
-  getNamesOfTechnologiesInCategory,
   getTechnologiesInCategory,
   TechCategory,
   TECHNOLOGIES,
   Technology,
 } from '../../../content/technologies'
 import styles from './skills.module.css'
-import { Typewriter } from '@/components/typewriter'
 
 function SkillsPage() {
   const technlogiesLength = Object.keys(TECHNOLOGIES).length
@@ -106,7 +105,10 @@ function SkillsPage() {
 
     setCaughtIcons(newCaughtIcons)
 
-    if (newCaughtIcons.every((b) => b === true)) endGame()
+    if (newCaughtIcons.every((b) => b === true)) {
+      putDownNet()
+      endGame()
+    }
   }
 
   const endGame = () => {
@@ -139,21 +141,29 @@ function SkillsPage() {
     [activeImage, windowIsDefined]
   )
 
-  const pickUpNet =
+  const pickUpOrPutDownNet =
     (netRef: React.RefObject<HTMLImageElement>) => (e: React.MouseEvent) => {
       if (netMode) {
-        document.removeEventListener('mousemove', move)
-        setNetMode(false)
-        setActiveImage(null)
-        setCursor('auto')
+        putDownNet()
       } else {
-        setNetMode(true)
-        setNetMoved(true)
-        setActiveImage(netRef.current)
-        document.addEventListener('mousemove', move)
-        setCursor('none')
+        pickUpNet(netRef)
       }
     }
+
+  const pickUpNet = (netRef: React.RefObject<HTMLImageElement>) => {
+    setNetMode(true)
+    setNetMoved(true)
+    setActiveImage(netRef.current)
+    document.addEventListener('mousemove', move)
+    setCursor('none')
+  }
+
+  const putDownNet = () => {
+    document.removeEventListener('mousemove', move)
+    setNetMode(false)
+    setActiveImage(null)
+    setCursor('auto')
+  }
 
   const gridIconOpacity = (i: number, tech: Technology) => {
     const itemIsCaught = linedUp || caughtIcons[i]
@@ -219,7 +229,6 @@ function SkillsPage() {
     }, 3000)
     return () => clearTimeout(timer)
   }, [])
-  console.log(netMode)
 
   return (
     <div className={`w-100`} style={{ cursor: cursor }}>
@@ -273,7 +282,7 @@ function SkillsPage() {
             <button disabled={!gameToolsFadingIn}>
               <img
                 ref={netRef}
-                onMouseDown={pickUpNet(netRef)}
+                onMouseDown={pickUpOrPutDownNet(netRef)}
                 src={'images/net.png'}
                 alt={'a net'}
                 width={100}

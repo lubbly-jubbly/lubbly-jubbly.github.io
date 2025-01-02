@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react'
 import { Project, PROJECTS } from '../../../content/projects'
 import { ScrollGallery } from '../../components/scrollGallery'
 import WorkItem from './workItem'
+import SineWave from '@/components/sineWave'
+import ProjectCard from './projectCard'
 
 function WorkPage() {
   const [activeProject, setActiveProject] = useState<Project | null>(null)
@@ -26,7 +28,7 @@ function WorkPage() {
 
   return (
     <div>
-      <ScrollGallery itemWidth={340} gapWidth={32}>
+      {/* <ScrollGallery itemWidth={340} gapWidth={32}>
         <WorkItem
           project={PROJECTS.switch}
           onClick={() => setActiveProject(PROJECTS.switch)}
@@ -37,8 +39,12 @@ function WorkPage() {
         />
         <WorkItem project={PROJECTS.pubble} />
         <WorkItem project={PROJECTS.vor} />
-      </ScrollGallery>
-      {projectDetailsComponent}
+      </ScrollGallery> */}
+      <ProjectCard project={PROJECTS.gce} />
+      <ProjectCard project={PROJECTS.switch} />
+      <ProjectCard project={PROJECTS.vor} />
+      <div>ANKI</div>
+      {/* {projectDetailsComponent} */}
     </div>
   )
 }

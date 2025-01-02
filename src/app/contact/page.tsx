@@ -3,6 +3,8 @@ import React, { useEffect, useRef } from 'react'
 import FormInput from '../../components/formInput'
 import styles from './contact.module.css'
 import { ReactSketchCanvas, ReactSketchCanvasRef } from 'react-sketch-canvas'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faRedo } from '@fortawesome/free-solid-svg-icons'
 
 function ContactPage() {
   const canvasRef = useRef<ReactSketchCanvasRef | null>(null)
@@ -143,11 +145,7 @@ function ContactPage() {
                 onClick={clearDrawing}
                 className="absolute top-1 right-2"
               >
-                <img
-                  src="images/round-arrow.png"
-                  alt="restart arrow icon"
-                  width={40}
-                />
+                <FontAwesomeIcon icon={faRedo} className="text-grey" />
               </button>
               <ReactSketchCanvas
                 ref={canvasRef}

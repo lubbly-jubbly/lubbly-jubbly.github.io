@@ -1,0 +1,128 @@
+/* Credit to https://jaron.nl/articles/animate-along-sine-wave */
+
+/* create a variable that holds the progress percentage
+you can't animate custom properties by default; you have
+to define what kind of value it is with @property */
+@property --progress {
+  initial-value: 0;
+  inherits: false;
+  syntax: '<number>';
+}
+
+@keyframes progress {
+  from {
+    --progress: 0;
+  }
+  to {
+    --progress: 1;
+  }
+}
+
+.shape-container {
+  --shape-height: 50px;
+
+  --PI: 3.1415;
+  --WAVE-COUNT: 2; /* number of waves to do over the element's width */
+  --TOTAL-ANGLE: calc(
+    var(--WAVE-COUNT) * 2 * var(--PI)
+  ); /* one wave is 2PI radians */
+  --UNIT: 1vw; /* we need to use the same unit for all calculations. Keep variables unit-less as long as possible, and only apply units when assigning to css properties */
+  --r: 5; /* radius in --UNITs of circle we'll use as reference */
+  --CONTAINER-WIDTH: 100; /* container's width in --UNITs */
+  --CONTAINER-HEIGHT: calc(
+    10vw + var(--shape-height)
+  ); /* container's width in --UNITs */
+
+  --ROTATION-PER-LENGTH-UNIT: calc(var(--TOTAL-ANGLE) / var(--CONTAINER-WIDTH));
+  --alpha-reference-angle: calc(
+    var(--ROTATION-PER-LENGTH-UNIT) * var(--x) * 1rad
+  ); /* current angle of reference circle */
+  /* we could also express --alpha-reference-angle by just using --progress and --TOTAL-ANGLE, 
+  --alpha-reference-angle: calc(var(--progress) * var(--TOTAL-ANGLE) * 1rad);
+  but in the next step we'll need to have the angle expressed as a function of x */
+  --x: calc(
+    var(--progress) * var(--CONTAINER-WIDTH)
+  ); /* current x-position in --UNITs */
+
+  --y: calc(
+    -1 * var(--r) * sin(var(--alpha-reference-angle))
+  ); /* current y-position in --UNITs; multiply by -1 because in math positive values are upward, in css downwards */
+
+  /* for calculations, we need to use x and y without units;
+  for the translate, we need them with units */
+  --x-with-unit: calc(var(--x) * var(--UNIT));
+  --y-with-unit: calc(var(--y) * var(--UNIT));
+
+  position: relative;
+  /* top: 100px;
+  left: 0; */
+  width: calc(var(--CONTAINER-WIDTH) * var(--UNIT));
+  height: calc(var(--CONTAINER-HEIGHT));
+  animation: progress 6s linear infinite;
+
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100'><path d='M 0 50 Q 25 0 50 50 T 100 50 T 150 50 T 200 50' fill='none' stroke='black' stroke-width='2'/></svg>");
+  background-repeat: repeat-x;
+  background-size: calc(
+      var(--CONTAINER-WIDTH) * var(--UNIT) / var(--WAVE-COUNT)
+    )
+    100%; /* Adjusts the wave frequency */
+}
+
+.shape {
+  --shape-width: 50px;
+  position: absolute;
+  z-index: 1;
+  top: calc(0.5 * (var(--CONTAINER-HEIGHT) - var(--shape-height)));
+  left: calc(-0.5 * var(--shape-width));
+  width: var(--shape-width);
+  height: var(--shape-height);
+  background: hotpink;
+  translate: var(--x-with-unit) var(--y-with-unit);
+}
+
+/* code below for demonstration purposes only: dotted helper lines
+
+.shape-container--with-indicators {
+  border-top: 1px dotted hotpink;
+  
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: calc(-1 * var(--r) * var(--UNIT));
+    width: 100%;
+    height: 0;
+    border-top: 1px dotted #ccc;
+  }
+
+  &::after {
+    top: calc(var(--r) * var(--UNIT));
+  }
+} */
+
+.sine-wave {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  background: transparent;
+  display: flex;
+  overflow: hidden;
+}
+
+.wave-dot {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: blue;
+  border-radius: 50%;
+  animation: moveRight linear infinite;
+}
+
+@keyframes moveRight {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100vw);
+  }
+}

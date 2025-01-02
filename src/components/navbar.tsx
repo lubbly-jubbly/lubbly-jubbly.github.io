@@ -46,7 +46,11 @@ const Navbar = () => {
     <div>
       <div className={'d-flex justify-content-center'}>
         <Link href={'/'} onClick={() => setActiveNavItem('home')}>
-          <img src="/images/libby-rear-text.png" alt="libby rear" width={300} />
+          <img
+            src="/images/libby-rear-logo-3.png"
+            alt="libby rear"
+            width={400}
+          />
         </Link>
       </div>
       <nav>
