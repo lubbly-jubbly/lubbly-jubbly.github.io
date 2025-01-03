@@ -7,6 +7,8 @@ import { ScrollGallery } from '../../components/scrollGallery'
 import WorkItem from './workItem'
 import SineWave from '@/components/sineWave'
 import ProjectCard from './projectCard'
+import { Fade } from 'react-slideshow-image'
+import AnkiProjectCard from './ankiProjectCard'
 
 function WorkPage() {
   const [activeProject, setActiveProject] = useState<Project | null>(null)
@@ -42,7 +44,7 @@ function WorkPage() {
       </ScrollGallery> */}
       <ProjectCard project={PROJECTS.gce} alignment={'right'} />
       <ProjectCard project={PROJECTS.switch} alignment={'left'} />
-      <ProjectCard project={PROJECTS.vor} alignment={'right'} />
+      <AnkiProjectCard project={PROJECTS.anki} />
       <div>ANKI</div>
       <div>Various</div>
       {/* {projectDetailsComponent} */}

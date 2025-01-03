@@ -1,6 +1,8 @@
 import SkillItem from '@/components/skillItem'
 import { useState } from 'react'
 import { Project } from '../../../content/projects'
+import { Fade } from 'react-slideshow-image'
+import ProjectSlideshow from './projectSlideshow'
 
 type ProjectCardProps = {
   project: Project
@@ -23,6 +25,7 @@ function ProjectCard(props: ProjectCardProps) {
     date,
     githubUrl,
     image,
+    imageUrls,
   } = props.project
 
   let i = 1
@@ -34,7 +37,7 @@ function ProjectCard(props: ProjectCardProps) {
       <div
         className={
           'row-span-full col-span-6 max-md:flex max-md:flex-col max-md:justify-center max-md:h-full max-md:col-span-full relative ' +
-          (leftAligned ? 'md:col-start-1 md:col-span-8 ' : '') +
+          (leftAligned ? 'md:col-start-1 md:col-span-6 ' : '') +
           (rightAligned
             ? 'md:text-right md:col-start-5 md:col-span-full lg:col-start-7'
             : '')
@@ -90,7 +93,7 @@ function ProjectCard(props: ProjectCardProps) {
           (rightAligned ? 'col-start-1 col-span-8' : '')
         }
       >
-        <a href={'#'}>{image}</a>
+        <ProjectSlideshow imageUrls={imageUrls} projectName={name} />
       </div>
     </div>
   )

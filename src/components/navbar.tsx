@@ -47,7 +47,7 @@ const Navbar = () => {
       <div className={'d-flex justify-content-center'}>
         <Link href={'/'} onClick={() => setActiveNavItem('home')}>
           <img
-            src="/images/libby-rear-logo-3.png"
+            src="/images/navbar/libby-rear-logo-3.png"
             alt="libby rear"
             width={400}
           />
@@ -74,8 +74,8 @@ const Navbar = () => {
                     src={
                       hoveredNavItem === 'briefcase' ||
                       activeNavItem === 'briefcase'
-                        ? '/images/briefcase-open.png'
-                        : '/images/briefcase-closed.png'
+                        ? '/images/navbar/briefcase-open.png'
+                        : '/images/navbar/briefcase-closed.png'
                     }
                     alt="briefcase"
                     className={
@@ -90,8 +90,8 @@ const Navbar = () => {
                   <img
                     src={
                       activeNavItem === 'briefcase'
-                        ? '/images/my-work-text-active.png'
-                        : '/images/my-work-text.png'
+                        ? '/images/navbar/my-work-text-active.png'
+                        : '/images/navbar/my-work-text.png'
                     }
                     alt="my work text"
                     className="h-10"
@@ -116,8 +116,8 @@ const Navbar = () => {
                   <img
                     src={
                       hoveredNavItem === 'plant' || activeNavItem === 'plant'
-                        ? '/images/plant-flowered.png'
-                        : '/images/plant-baby.png'
+                        ? '/images/navbar/plant-flowered.png'
+                        : '/images/navbar/plant-baby.png'
                     }
                     alt="a potted plant"
                     className={
@@ -131,8 +131,8 @@ const Navbar = () => {
                   <img
                     src={
                       activeNavItem === 'plant'
-                        ? '/images/skills-text-active.png'
-                        : '/images/skills-text.png'
+                        ? '/images/navbar/skills-text-active.png'
+                        : '/images/navbar/skills-text.png'
                     }
                     alt="skills text"
                     className="h-10"
@@ -157,8 +157,8 @@ const Navbar = () => {
                   <img
                     src={
                       hoveredNavItem === 'paper'
-                        ? '/images/crumpled-paper.png'
-                        : '/images/paper.png'
+                        ? '/images/navbar/crumpled-paper.png'
+                        : '/images/navbar/paper.png'
                     }
                     alt="bit of paper"
                     className={
@@ -170,7 +170,7 @@ const Navbar = () => {
                 </div>
                 <div className="mt-2">
                   <img
-                    src={'/images/cv-text.png'}
+                    src={'/images/navbar/cv-text.png'}
                     alt="cv text"
                     className="h-8"
                   />
@@ -197,8 +197,8 @@ const Navbar = () => {
                     src={
                       hoveredNavItem === 'telephone' ||
                       activeNavItem === 'telephone'
-                        ? '/images/telephone-ringing.png'
-                        : '/images/telephone.png'
+                        ? '/images/navbar/telephone-ringing.png'
+                        : '/images/navbar/telephone.png'
                     }
                     alt="a red old-fashioned telephone"
                     className={
@@ -213,8 +213,8 @@ const Navbar = () => {
                   <img
                     src={
                       activeNavItem === 'telephone'
-                        ? '/images/contact-me-text-active.png'
-                        : '/images/contact-me-text.png'
+                        ? '/images/navbar/contact-me-text-active.png'
+                        : '/images/navbar/contact-me-text.png'
                     }
                     alt="contact me text"
                     className="h-10"

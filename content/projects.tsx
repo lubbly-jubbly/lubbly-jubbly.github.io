@@ -5,11 +5,12 @@ export type Project = {
   technologies: Technology[]
   shortDescription: string
   projectType: string
-  url: string
-  logo: JSX.Element
+  url?: string
+  logo?: JSX.Element
   date: string
   githubUrl?: string
   liveUrl?: string
+  imageUrls: string[]
   image: JSX.Element
 }
 
@@ -29,6 +30,36 @@ export const PROJECTS: Record<string, Project> = {
     logo: <img src="images/gce-logo.png" alt="GCE logo" />,
     date: 'Jun - Aug 2022',
     githubUrl: 'https://github.com/lubbly-jubbly/Switch',
+    imageUrls: [
+      'images/switchScreenshots/add-shift.png',
+      'images/switchScreenshots/create-rota.png',
+      'images/switchScreenshots/create-team.png',
+      'images/switchScreenshots/day-details.png',
+      'images/switchScreenshots/delete-shift.png',
+      'images/switchScreenshots/edit-weekly-hours.png',
+      'images/switchScreenshots/employee-view-requests.png',
+      'images/switchScreenshots/enter-join-code.png',
+      'images/switchScreenshots/home-tab.png',
+      'images/switchScreenshots/login-1.png',
+      'images/switchScreenshots/login-2.png',
+      'images/switchScreenshots/login-3.png',
+      'images/switchScreenshots/login-4.png',
+      'images/switchScreenshots/regular-time-off.png',
+      'images/switchScreenshots/remove-employee.png',
+      'images/switchScreenshots/request-modal.png',
+      'images/switchScreenshots/reset-password.png',
+      'images/switchScreenshots/rota-tab-admin.png',
+      'images/switchScreenshots/select-time-off.png',
+      'images/switchScreenshots/signup-1.png',
+      'images/switchScreenshots/signup-2.png',
+      'images/switchScreenshots/signup-3.png',
+      'images/switchScreenshots/signup-4.png',
+      'images/switchScreenshots/signup-5.png',
+      'images/switchScreenshots/staff-requirements.png',
+      'images/switchScreenshots/time-pickers-disappear.png',
+      'images/switchScreenshots/view-requests.png',
+      'images/switchScreenshots/view-team.png',
+    ],
     image: (
       <div className="flex flex-row gap-2">
         <img
@@ -64,7 +95,12 @@ export const PROJECTS: Record<string, Project> = {
     logo: <img src="images/gce-logo.png" alt="GCE logo" />,
     date: 'April 2024 - Present',
     liveUrl: 'https://www.glasgowenergy.coop/',
-    image: <img src="images/gce-screenshot-1.png" alt="" />,
+    imageUrls: [
+      'images/gceScreenshots/map.png',
+      'images/gceScreenshots/membership-checkout.png',
+      'images/gceScreenshots/become-member.png',
+    ],
+    image: <img src="images/gceScreenshots/map.png" alt="" />,
   },
   pubble: {
     name: 'Pubble',
@@ -82,6 +118,7 @@ export const PROJECTS: Record<string, Project> = {
     date: 'Aug 2024 - Present',
     githubUrl: 'https://github.com/caiodrear/pubble',
     liveUrl: 'https://pubble.azurewebsites.net/',
+    imageUrls: [],
     image: <img src="images/gce-screenshot-1.png" alt="" className="img" />,
   },
   vor: {
@@ -99,6 +136,7 @@ export const PROJECTS: Record<string, Project> = {
     url: './work/vor',
     logo: <img src="images/vor-logo.png" alt="VOR logo" />,
     date: 'Nov 2022 - May 2024',
+    imageUrls: [],
     image: <img src="images/gce-screenshot-1.png" alt="" className="img" />,
   },
   portfolio: {
@@ -116,17 +154,48 @@ export const PROJECTS: Record<string, Project> = {
     logo: <img src="images/gce-logo.png" alt="GCE logo" />,
     date: 'Jan 2024 - Present',
     githubUrl: 'https://github.com/lubbly-jubbly/lubbly-jubbly.github.io',
+    imageUrls: [],
     image: <img src="images/gce-screenshot-1.png" alt="" className="img" />,
   },
   anki: {
-    name: 'Anki projects',
+    name: 'Anki',
     technologies: [TECHNOLOGIES.python],
-    shortDescription: `Various projects relating to Anki flashcard program, including converting a CSV to an Anki deck and optimisation of Japanese decks.`,
+    shortDescription: `Various projects relating to Anki flashcard program.`,
     projectType: 'Personal project',
-    url: './work/vor',
     logo: <img src="images/gce-logo.png" alt="GCE logo" />,
-    date: 'Jan 2024 - Present',
-    githubUrl: 'https://github.com/lubbly-jubbly/lubbly-jubbly.github.io',
+    date: 'Oct 2024 - Jan 2025',
+    githubUrl: '',
+    imageUrls: [],
+    image: <img src="images/gce-screenshot-1.png" alt="" className="img" />,
+  },
+  germanVocabDeck: {
+    name: 'German Vocab Deck',
+    technologies: [TECHNOLOGIES.python],
+    shortDescription: `Script that creates an anki .apkg file from a csv containing german café vocab.`,
+    projectType: 'Personal project',
+    date: 'Nov 2024',
+    githubUrl: 'https://github.com/lubbly-jubbly/german-cafe-vocab-deck',
+    imageUrls: [],
+    image: <img src="images/gce-screenshot-1.png" alt="" className="img" />,
+  },
+  reorderWanikaniDeck: {
+    name: 'Japanese deck optimisation',
+    technologies: [TECHNOLOGIES.python],
+    shortDescription: `Reorders a wanikani deck, so that the order of the kanji and vocab decks match the order of the kanji and vocab shown in TheMoeWay N5 japanese deck.`,
+    projectType: 'Personal project',
+    date: 'Oct - Nov 2024',
+    githubUrl: 'https://github.com/lubbly-jubbly/moekani',
+    imageUrls: [],
+    image: <img src="images/gce-screenshot-1.png" alt="" className="img" />,
+  },
+  moekani: {
+    name: 'Moekani',
+    technologies: [TECHNOLOGIES.python],
+    shortDescription: `Creates an Anki deck based on an existing japanese deck, TheMoeWay, and data queried from the api of Wanikani, a kanji learning tool.`,
+    projectType: 'Personal project',
+    date: 'Jan 2025',
+    githubUrl: 'https://github.com/lubbly-jubbly/moekani-2',
+    imageUrls: [],
     image: <img src="images/gce-screenshot-1.png" alt="" className="img" />,
   },
 }
