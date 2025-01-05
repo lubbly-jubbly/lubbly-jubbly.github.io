@@ -2,15 +2,10 @@
 import Navbar from '@/components/navbar'
 import Switch from '@/components/switch/switch'
 import { useEffect, useState } from 'react'
-import { Project, PROJECTS } from '../../../content/projects'
-import { ScrollGallery } from '../../components/scrollGallery'
-import WorkItem from './workItem'
-import SineWave from '@/components/sineWave'
-import ProjectCard from './projectCard'
-import { Fade } from 'react-slideshow-image'
-import AnkiProjectCard from './ankiProjectCard'
-import DiscoButton from '@/components/discoButton'
 import ModalVideo from 'react-modal-video'
+import { Project, PROJECTS } from '../../../content/projects'
+import AnkiProjectCard from './ankiProjectCard'
+import ProjectCard from './projectCard'
 
 function WorkPage() {
   const [activeProject, setActiveProject] = useState<Project | null>(null)
