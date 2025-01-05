@@ -1,0 +1,159 @@
+/* CSS */
+.disco-item {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.disco-item {
+  --gradient-colors: linear-gradient(
+    65deg,
+    #ff0000,
+    #f74444,
+    #ff8060,
+    #fccd7b,
+    #ffeda5,
+    #00ffd5,
+    #ff8585,
+    #fda7a7,
+    #ffffff,
+    #ffb7e2,
+    #fa6e6e,
+    #ff0000
+      /* #ff0000,
+    #ff7300,
+    #fffb00,
+    #48ff00,
+    #00ffd5,
+    #002bff,
+    #7a00ff,
+    #ff00c8,
+    #ff0000 */
+  );
+}
+
+.disco-item-orange-1 {
+  --gradient-colors: linear-gradient(
+    65deg,
+    #ff0000,
+    #ff0000,
+    #ff0000,
+    #ff9022,
+    #ffc422,
+    #ffe8ba,
+    #fcefd5,
+    #ffd698,
+    #ff9022,
+    #fa6e6e,
+    #ff0000,
+    #ff0000
+  );
+}
+
+.disco-item-orange-2 {
+  --gradient-colors: linear-gradient(
+    85deg,
+    #fcefd5,
+    #ffe8ba,
+    #ffd698,
+    #ffc422,
+    #ff9022,
+    #fa6e6e,
+    #ff0000,
+    #ff0000,
+    #ff6017,
+    #ff9022,
+    #ffc422,
+    #ffd698,
+    #ffe8ba,
+    #fcefd5,
+    #fffffe
+  );
+}
+
+.disco-item-orange-3 {
+  --gradient-colors: linear-gradient(
+    75deg,
+    #ff9022,
+    #ff9022,
+    #fa6e6e,
+    #ff0000,
+    #ff0000,
+    #ff6017,
+    #ff9022,
+    #ffc422,
+    #ffd698,
+    #ffe8ba,
+    #fcefd5,
+    #fffffe,
+    #fcefd5,
+    #ffe8ba,
+    #ffd698,
+    #ffc422,
+    #ff9022,
+    #ff9022
+  );
+}
+
+.disco-item-blue-1 {
+  --gradient-colors: linear-gradient(75deg, #6122ff, #dce3fa, #acff8c, #1500ff);
+}
+
+.disco-item-blue-2 {
+  --gradient-colors: linear-gradient(75deg, #ffb48c, #dce3fa, #6131ff, #ffb48c);
+}
+
+.disco-item-blue-3 {
+  --gradient-colors: linear-gradient(75deg, #6122ff, #dce3fa, #deff8c, #1500ff);
+}
+
+.disco-item:before {
+  content: '';
+  background: var(--gradient-colors);
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: disco-item-animate 60s linear infinite;
+  transition: opacity 0.3s ease-in-out;
+}
+
+@keyframes disco-item-animate {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+.disco-item:after {
+  z-index: -1;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+
+.disco-item-shadow:before {
+  filter: blur(15px);
+  -webkit-filter: blur(15px);
+  top: 10px;
+  left: 4px;
+  opacity: 50%;
+}

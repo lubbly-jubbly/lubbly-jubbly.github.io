@@ -9,11 +9,20 @@ import SineWave from '@/components/sineWave'
 import ProjectCard from './projectCard'
 import { Fade } from 'react-slideshow-image'
 import AnkiProjectCard from './ankiProjectCard'
+import DiscoButton from '@/components/discoButton'
+import ModalVideo from 'react-modal-video'
 
 function WorkPage() {
   const [activeProject, setActiveProject] = useState<Project | null>(null)
   const [projectDetailsComponent, setProjectDetailsComponent] =
     useState<JSX.Element | null>(null)
+  const [modal, setModal] = useState<boolean>(false)
+  const [modalVideoId, setModalVideoId] = useState<string>('')
+
+  const handleClick = (videoId: string) => {
+    setModalVideoId(videoId)
+    setModal(!modal) // Invoke the callback with data
+  }
 
   useEffect(() => {
     switch (activeProject) {
@@ -30,24 +39,19 @@ function WorkPage() {
 
   return (
     <div>
-      {/* <ScrollGallery itemWidth={340} gapWidth={32}>
-        <WorkItem
-          project={PROJECTS.switch}
-          onClick={() => setActiveProject(PROJECTS.switch)}
-        />
-        <WorkItem
-          project={PROJECTS.gce}
-          onClick={() => setActiveProject(PROJECTS.vor)}
-        />
-        <WorkItem project={PROJECTS.pubble} />
-        <WorkItem project={PROJECTS.vor} />
-      </ScrollGallery> */}
+      <ModalVideo
+        channel="youtube"
+        isOpen={modal}
+        videoId={modalVideoId}
+        onClose={() => setModal(!modal)}
+      />
       <ProjectCard project={PROJECTS.gce} alignment={'right'} />
-      <ProjectCard project={PROJECTS.switch} alignment={'left'} />
+      <ProjectCard
+        project={PROJECTS.switch}
+        alignment={'left'}
+        openModal={handleClick}
+      />
       <AnkiProjectCard project={PROJECTS.anki} />
-      <div>ANKI</div>
-      <div>Various</div>
-      {/* {projectDetailsComponent} */}
     </div>
   )
 }

@@ -3,6 +3,7 @@ import { Fade } from 'react-slideshow-image'
 import fs from 'fs'
 import path from 'path'
 import { PROJECTS } from '../../../content/projects'
+import '../../components/discoOutline.css'
 
 type ProjectSlideshowProps = {
   imageUrls: string[]
@@ -15,30 +16,40 @@ export default function ProjectSlideshow(props: ProjectSlideshowProps) {
     nextArrow: <></>,
   }
 
-  const chunkSize = 3
+  //   Since showing 3 images at a time, ensures that 3 images always displayed
+  const threeTimesImageUrls = props.imageUrls
+    .concat(props.imageUrls)
+    .concat(props.imageUrls)
+
   const groupedUrls = []
-  for (let i = 0; i < props.imageUrls.length; i += chunkSize) {
-    groupedUrls.push(props.imageUrls.slice(i, i + chunkSize))
+  for (let i = 0; i < threeTimesImageUrls.length; i += 3) {
+    groupedUrls.push(threeTimesImageUrls.slice(i, i + 3))
   }
 
   return (
     <Fade {...properties}>
       {props.projectName === PROJECTS.switch.name
         ? groupedUrls.map((group, index) => (
-            <div key={index} className="flex flex-row gap-4 mb-4">
-              {group.map((url, idx) => (
-                <img
-                  key={idx}
-                  className="w-1/3"
-                  src={url}
-                  alt={`Screenshot ${idx}`}
-                />
+            <div key={index} className="flex flex-row gap-4">
+              {group.map((url, i) => (
+                <div className="flex flex-row justify-center items-center w-1/3 p-3">
+                  <div className={`disco-item disco-item-orange-${i + 1}`}>
+                    <img
+                      key={i}
+                      className=""
+                      src={url}
+                      alt={`Screenshot ${i}`}
+                    />
+                  </div>
+                </div>
               ))}
             </div>
           ))
         : props.imageUrls.map((url, index) => (
-            <div key={index}>
-              <img style={{ width: '100%' }} src={url} alt="" />
+            <div className="flex flex-row justify-center items-center p-3">
+              <div className="disco-item" key={index}>
+                <img style={{ height: '100%' }} src={url} alt="" />
+              </div>
             </div>
           ))}
     </Fade>

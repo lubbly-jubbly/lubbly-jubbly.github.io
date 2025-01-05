@@ -8,6 +8,7 @@ type ProjectCardProps = {
   project: Project
   alignment: 'right' | 'left'
   onClick?: () => void
+  openModal?: (videoId: string) => void
 }
 
 function ProjectCard(props: ProjectCardProps) {
@@ -26,6 +27,7 @@ function ProjectCard(props: ProjectCardProps) {
     githubUrl,
     image,
     imageUrls,
+    videoId,
   } = props.project
 
   let i = 1
@@ -44,9 +46,50 @@ function ProjectCard(props: ProjectCardProps) {
         }
       >
         <div>
-          <p className="relative text-3xl md:mb-5 z-20">{name}</p>
+          <div
+            className={
+              'flex flex-row gap-2 items-center relative md:mb-3 z-20 ' +
+              (rightAligned && 'md:justify-end')
+            }
+          >
+            <p className="md:text-right text-3xl">{name}</p>
 
-          <div className="relative z-20 p-6 md:bg-[#f2faf3]">
+            {githubUrl && (
+              <a
+                href={'https://github.com/lubbly-jubbly'}
+                aria-label="GitHub Link"
+              >
+                <img
+                  src={`/images/${
+                    hoveredIcon === 'github'
+                      ? 'github-icon-active'
+                      : 'github-icon'
+                  }.png`}
+                  alt="github logo"
+                  className={'w-10'}
+                />
+              </a>
+            )}
+
+            {videoId && (
+              <div
+                onClick={() =>
+                  props.openModal ? props.openModal(videoId) : null
+                }
+                onMouseEnter={() => setHoveredIcon('play')}
+                onMouseLeave={() => setHoveredIcon(null)}
+              >
+                <img
+                  src={`/images/${
+                    hoveredIcon === 'play' ? 'play-icon-active' : 'play-icon'
+                  }.png`}
+                  alt="play video icon"
+                  className={'w-10'}
+                />
+              </div>
+            )}
+          </div>
+          <div className="relative z-20 p-6 md:bg-[white] shadow-md rounded-xl">
             {shortDescription}
           </div>
 
@@ -62,27 +105,6 @@ function ProjectCard(props: ProjectCardProps) {
               ))}
             </ul>
           )}
-
-          <div className="flex items-center relative mt-2">
-            {githubUrl ? (
-              <a
-                href={'https://github.com/lubbly-jubbly'}
-                aria-label="GitHub Link"
-              >
-                <img
-                  src={`/images/${
-                    hoveredIcon === 'github'
-                      ? 'github-icon-active'
-                      : 'github-icon'
-                  }.png`}
-                  alt="github logo"
-                  className={'w-10'}
-                />
-              </a>
-            ) : (
-              ''
-            )}
-          </div>
         </div>
       </div>
 

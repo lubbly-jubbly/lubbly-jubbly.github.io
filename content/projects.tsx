@@ -12,6 +12,7 @@ export type Project = {
   liveUrl?: string
   imageUrls: string[]
   image: JSX.Element
+  videoId?: string
 }
 
 export const PROJECTS: Record<string, Project> = {
@@ -24,7 +25,8 @@ export const PROJECTS: Record<string, Project> = {
       TECHNOLOGIES.jest,
       TECHNOLOGIES.figma,
     ],
-    shortDescription: 'A rota management app for hospitality workplaces.',
+    shortDescription:
+      'A rota management app for hospitality workplaces that creates a rota based on the availability and preferences of employees.',
     projectType: 'MSc project',
     url: './work/switch',
     logo: <img src="images/gce-logo.png" alt="GCE logo" />,
@@ -79,6 +81,7 @@ export const PROJECTS: Record<string, Project> = {
         />
       </div>
     ),
+    videoId: 'hkhQliBpbDE?si=XBIHWeluysoaj2HS',
   },
   gce: {
     name: 'Glasgow Community Energy',
