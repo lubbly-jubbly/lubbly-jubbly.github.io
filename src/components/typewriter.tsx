@@ -52,7 +52,7 @@ export const Typewriter = (props: TypewriterProps) => {
     }
 
     return () => clearTimeout(timeout)
-  }, [isDeleting, currentStringIndex, textStrings, isFinished])
+  }, [isDeleting, currentStringIndex, textStrings, isFinished, onFinish])
 
   return (
     <div className="flex justify-center">

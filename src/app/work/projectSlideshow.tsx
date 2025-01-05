@@ -32,7 +32,10 @@ export default function ProjectSlideshow(props: ProjectSlideshowProps) {
         ? groupedUrls.map((group, index) => (
             <div key={index} className="flex flex-row gap-4">
               {group.map((url, i) => (
-                <div className="flex flex-row justify-center items-center w-1/3 p-3">
+                <div
+                  key={i}
+                  className="flex flex-row justify-center items-center w-1/3 p-3"
+                >
                   <div className={`disco-item disco-item-orange-${i + 1}`}>
                     <img
                       key={i}
@@ -46,7 +49,10 @@ export default function ProjectSlideshow(props: ProjectSlideshowProps) {
             </div>
           ))
         : props.imageUrls.map((url, index) => (
-            <div className="flex flex-row justify-center items-center p-3">
+            <div
+              key={index}
+              className="flex flex-row justify-center items-center p-3"
+            >
               <div className="disco-item" key={index}>
                 <img style={{ height: '100%' }} src={url} alt="" />
               </div>
