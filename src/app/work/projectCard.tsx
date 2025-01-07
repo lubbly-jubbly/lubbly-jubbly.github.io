@@ -55,10 +55,7 @@ function ProjectCard(props: ProjectCardProps) {
             <p className="md:text-right text-3xl">{name}</p>
 
             {githubUrl && (
-              <a
-                href={'https://github.com/lubbly-jubbly'}
-                aria-label="GitHub Link"
-              >
+              <a href={githubUrl} aria-label="GitHub Link">
                 <img
                   src={`/images/${
                     hoveredIcon === 'github'
