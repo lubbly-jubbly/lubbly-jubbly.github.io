@@ -4,7 +4,7 @@ import styles from './typewriter.module.css'
 type TypewriterProps = {
   textStrings: string[]
   classNames: string[]
-  onFinish: () => void
+  onFinish?: () => void
 }
 
 export const Typewriter = (props: TypewriterProps) => {
@@ -15,11 +15,18 @@ export const Typewriter = (props: TypewriterProps) => {
   const [animationClass, setAnimationClass] = useState(styles.typing)
   const [isFinished, setIsFinished] = useState(false)
 
+  const speed = 20
+
   const currentString = textStrings[currentStringIndex]
-  const currentStringAnimationDuration = currentString.length / 20
+  const currentStringAnimationDuration = currentString.length / speed
+  const currentStringAnimationDurationInMilliseconds =
+    currentStringAnimationDuration * 1000
+
+  const timeToAllowEachAnimation =
+    currentStringAnimationDurationInMilliseconds + 1000
 
   useEffect(() => {
-    if (isFinished) {
+    if (isFinished && onFinish) {
       onFinish()
       return
     }
@@ -32,12 +39,13 @@ export const Typewriter = (props: TypewriterProps) => {
       // Typing forward
       setAnimationClass(styles.typing)
       timeout = setTimeout(() => {
-        if (currentStringIndex !== textStrings.length - 1) {
-          setIsDeleting(true)
-        } else {
+        if (currentStringIndex === textStrings.length - 1) {
+          // If its the last string of the bunch, leave it showing
           setIsFinished(true)
+        } else {
+          setIsDeleting(true)
         }
-      }, 1500)
+      }, timeToAllowEachAnimation)
     } else {
       // Backspacing
       setAnimationClass(styles.backspace)
@@ -46,13 +54,25 @@ export const Typewriter = (props: TypewriterProps) => {
           setIsFinished(true)
         } else {
           setIsDeleting(false)
-          setCurrentStringIndex((prevIndex) => prevIndex + 1)
+          setTimeout(() => {
+            // Small delay before showing next string to prevent string flashing up
+            setCurrentStringIndex((prevIndex) => prevIndex + 1)
+          }, 50)
         }
-      }, 1500)
+      }, timeToAllowEachAnimation)
     }
 
-    return () => clearTimeout(timeout)
-  }, [isDeleting, currentStringIndex, textStrings, isFinished, onFinish])
+    return () => {
+      clearTimeout(timeout)
+    }
+  }, [
+    isDeleting,
+    currentStringIndex,
+    textStrings.length,
+    isFinished,
+    onFinish,
+    timeToAllowEachAnimation,
+  ])
 
   return (
     <div className="flex justify-center">

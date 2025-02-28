@@ -17,7 +17,6 @@ const SineWave: React.FC<SineWaveProps> = ({}) => {
   useEffect(() => {
     const rootStyles = getComputedStyle(document.documentElement)
     const x = rootStyles.getPropertyValue('--alpha-reference-angle')
-    console.log(x)
   }, [])
   return (
     <div>

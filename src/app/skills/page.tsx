@@ -1,7 +1,7 @@
 'use client'
 import SkillItem from '@/components/skillItem'
 import { Typewriter } from '@/components/typewriter'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import {
   getTechnologiesInCategory,
   TechCategory,
@@ -11,7 +11,8 @@ import {
 import styles from './skills.module.css'
 
 function SkillsPage() {
-  const technlogiesLength = Object.keys(TECHNOLOGIES).length
+  const visibleTechnologies = TECHNOLOGIES
+  const technlogiesLength = Object.keys(visibleTechnologies).length
   const [linedUp, setLinedUp] = useState<boolean>(false)
   const [caughtIcons, setCaughtIcons] = useState<boolean[]>(
     Array(technlogiesLength).fill(0)
@@ -20,36 +21,40 @@ function SkillsPage() {
   const [selectedCategory, setSelectedCategory] = useState<
     TechCategory | 'All'
   >('All')
-  const [gameIsOver, setGameIsOver] = useState(false)
-  const [gameToolsShowing, setGameToolsShowing] = useState(true)
-  const [gameToolsFadingIn, setGameToolsFadingIn] = useState(false)
+  const [gameToolsRendered, setGameToolsRendered] = useState(true)
+  const [gameToolsVisible, setGameToolsVisible] = useState(false)
+  const [gameToolsFadingOut, setGameToolsFadingOut] = useState(false)
+  const [allGridIconsVisible, setAllGridIconsVisible] = useState(false)
+  const [playEndOfGameTypewriter, setPlayEndOfGameTypewriter] = useState(false)
 
   const [typewriterAnimationIsFinished, setTypewriterAnimationIsFinished] =
     useState(false)
+
+  const handleFinishTypewriterAnimation = useCallback(() => {
+    setTypewriterAnimationIsFinished(true)
+  }, [])
 
   const getRandomBetween = (min: number, max: number) => {
     const random = Math.random()
     return random * (max - min) + min
   }
-
   const windowIsDefined = typeof window !== 'undefined'
   const getRandomXPosition = () =>
     windowIsDefined ? 20 + Math.random() * (window.innerWidth - 40) : 0
   const getRandomYPosition = () =>
     windowIsDefined ? 20 + Math.random() * (window.innerHeight - 40) : 0
-
   const [gridPositions, setGridPositions] = useState(
-    Object.keys(TECHNOLOGIES).map(() => ({ x: 0, y: 0 }))
+    Object.keys(visibleTechnologies).map(() => ({ x: 0, y: 0 }))
   )
 
   const [positions, setPositions] = useState(
-    Object.keys(TECHNOLOGIES).map(() => ({
+    Object.keys(visibleTechnologies).map(() => ({
       x: getRandomXPosition(),
       y: getRandomYPosition(),
     }))
   )
   const [directions, setDirections] = useState(
-    Object.keys(TECHNOLOGIES).map(() => ({
+    Object.keys(visibleTechnologies).map(() => ({
       dirX: getRandomBetween(0.3, 2),
       dirY: getRandomBetween(0.3, 2),
     }))
@@ -60,7 +65,7 @@ function SkillsPage() {
   const iconRef = useRef<HTMLDivElement[]>([])
   const gridRef = useRef<HTMLDivElement[]>([])
 
-  let animationRequests: number[] = []
+  const animationRequests = useMemo<number[]>(() => [], [])
 
   const lineUp = () => {
     const renderedGridPositions = gridRef.current.map((ref) => {
@@ -96,7 +101,6 @@ function SkillsPage() {
   }
 
   const catchIcon = (index: number) => {
-    console.log(index)
     windowIsDefined && window.cancelAnimationFrame(animationRequests[index])
 
     const newCaughtIcons = caughtIcons.map((status, j) =>
@@ -115,10 +119,12 @@ function SkillsPage() {
     setLinedUp(true)
 
     setTimeout(() => {
-      setGameIsOver(true)
+      setAllGridIconsVisible(true)
+      setGameToolsFadingOut(true)
+      setPlayEndOfGameTypewriter(true)
     }, 2000)
     setTimeout(() => {
-      setGameToolsShowing(false)
+      setGameToolsRendered(false)
     }, 3000)
   }
 
@@ -141,7 +147,7 @@ function SkillsPage() {
     [activeImage, windowIsDefined]
   )
 
-  const pickUpOrPutDownNet =
+  const interactWithNet =
     (netRef: React.RefObject<HTMLImageElement>) => (e: React.MouseEvent) => {
       if (netMode) {
         putDownNet()
@@ -177,7 +183,7 @@ function SkillsPage() {
   }
 
   useEffect(() => {
-    Object.keys(TECHNOLOGIES).forEach((element, i) => {
+    Object.keys(visibleTechnologies).forEach((element, i) => {
       const icon = iconRef.current[i]
       if (icon) {
         const iconWidth = icon.clientWidth
@@ -221,11 +227,19 @@ function SkillsPage() {
       animationRequests.forEach((request) => cancelAnimationFrame(request))
       document.removeEventListener('mousemove', move)
     }
-  }, [positions, directions, netMode, move, animationRequests, caughtIcons])
+  }, [
+    positions,
+    directions,
+    netMode,
+    move,
+    animationRequests,
+    caughtIcons,
+    visibleTechnologies,
+  ])
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setGameToolsFadingIn(true)
+      setGameToolsVisible(true)
     }, 3000)
     return () => clearTimeout(timer)
   }, [])
@@ -239,10 +253,9 @@ function SkillsPage() {
               'Oh no! Who let the skills escape! Give me a hand, would you?',
             ]}
             classNames={['text-xl text-center']}
-            onFinish={() => {}}
           />
         )}
-        {gameIsOver && (
+        {playEndOfGameTypewriter && (
           <Typewriter
             textStrings={[
               'Phew! Thanks.',
@@ -254,22 +267,22 @@ function SkillsPage() {
               'text-xl text-center',
               'text-xl text-center',
             ]}
-            onFinish={() => setTypewriterAnimationIsFinished(true)}
+            onFinish={handleFinishTypewriterAnimation}
           />
         )}
       </div>
       <div className="h-24 flex flex-col justify-end">
-        {gameToolsShowing ? (
+        {gameToolsRendered ? (
           <div className="flex justify-center items-center gap-8 py-2  ">
-            <button disabled={!gameToolsFadingIn}>
+            <button disabled={!gameToolsVisible}>
               <img
                 onClick={stopAnimations}
                 src={'images/whistle.webp'}
                 alt={'a silver whistle'}
                 width={70}
                 className={`${styles.tool} ${
-                  gameToolsFadingIn ? styles.fadeIn : ''
-                } ${gameIsOver ? styles.fadeOut : ''}
+                  gameToolsVisible ? styles.fadeIn : ''
+                } ${gameToolsFadingOut ? styles.fadeOut : ''}
             `}
               />
             </button>
@@ -279,17 +292,17 @@ function SkillsPage() {
               width={100}
               className={netMoved ? 'invisible' : 'hidden'}
             />
-            <button disabled={!gameToolsFadingIn}>
+            <button disabled={!gameToolsVisible}>
               <img
                 ref={netRef}
-                onMouseDown={pickUpOrPutDownNet(netRef)}
+                onMouseDown={interactWithNet(netRef)}
                 src={'images/net.png'}
                 alt={'a net'}
                 width={100}
                 className={`-rotate-[60deg] ${netMoved ? 'absolute' : ''} ${
                   styles.tool
-                }  ${gameToolsFadingIn ? styles.fadeIn : ''} ${
-                  gameIsOver ? styles.fadeOut : ''
+                }  ${gameToolsVisible ? styles.fadeIn : ''} ${
+                  gameToolsFadingOut ? styles.fadeOut : ''
                 }`}
               />
             </button>
@@ -322,7 +335,7 @@ function SkillsPage() {
         )}
       </div>
       <div className="grid grid-cols-7 gap-10">
-        {Object.values(TECHNOLOGIES).map((tech, i) => (
+        {Object.values(visibleTechnologies).map((tech, i) => (
           <div
             key={tech.name}
             ref={(element) =>
@@ -335,7 +348,7 @@ function SkillsPage() {
             `}
             style={{
               opacity: gridIconOpacity(i, tech),
-              transition: gameIsOver
+              transition: allGridIconsVisible
                 ? 'opacity 0.5s ease'
                 : 'opacity 0.5s ease 0.7s',
             }}
@@ -344,7 +357,7 @@ function SkillsPage() {
           </div>
         ))}
       </div>
-      {Object.keys(TECHNOLOGIES).map((tech, i) => (
+      {Object.keys(visibleTechnologies).map((tech, i) => (
         <div
           key={i}
           ref={(element) =>
@@ -365,7 +378,7 @@ function SkillsPage() {
           } ${caughtIcons[i] ? styles.iconFadeOut : ''}`}
           onMouseOver={() => netMode && catchIcon(i)}
         >
-          <SkillItem tech={TECHNOLOGIES[tech]} />
+          <SkillItem tech={visibleTechnologies[tech]} />
         </div>
       ))}
     </div>
