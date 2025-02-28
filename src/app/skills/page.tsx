@@ -13,6 +13,7 @@ import styles from './skills.module.css'
 function SkillsPage() {
   const visibleTechnologies = TECHNOLOGIES
   const technlogiesLength = Object.keys(visibleTechnologies).length
+
   const [linedUp, setLinedUp] = useState<boolean>(false)
   const [caughtIcons, setCaughtIcons] = useState<boolean[]>(
     Array(technlogiesLength).fill(0)
