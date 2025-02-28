@@ -1,6 +1,7 @@
 import SkillItem from '@/components/skillItem'
 import { useState } from 'react'
 import { Project, PROJECTS } from '../../../content/projects'
+import GithubButton from '@/components/githubButton'
 
 type AnkiProjectCardProps = {
   project: Project
@@ -31,25 +32,8 @@ function AnkiProjectCard(props: AnkiProjectCardProps) {
             </ul>
           )}
 
-          {subproject.githubUrl ? (
-            <a
-              href={subproject.githubUrl}
-              aria-label="GitHub Link"
-              className="w-8"
-              target="_blank"
-            >
-              <img
-                src={`/images/${
-                  hoveredIcon === 'github'
-                    ? 'github-icon-active'
-                    : 'github-icon'
-                }.png`}
-                alt="github logo"
-                className={'w-10'}
-              />
-            </a>
-          ) : (
-            ''
+          {subproject.githubUrl && (
+            <GithubButton githubUrl={subproject.githubUrl} size={8} />
           )}
         </div>
       </div>

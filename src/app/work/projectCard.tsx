@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { Project } from '../../../content/projects'
 import { Fade } from 'react-slideshow-image'
 import ProjectSlideshow from './projectSlideshow'
+import GithubButton from '@/components/githubButton'
 
 type ProjectCardProps = {
   project: Project
@@ -54,19 +55,7 @@ function ProjectCard(props: ProjectCardProps) {
           >
             <p className="md:text-right text-3xl">{name}</p>
 
-            {githubUrl && (
-              <a href={githubUrl} aria-label="GitHub Link">
-                <img
-                  src={`/images/${
-                    hoveredIcon === 'github'
-                      ? 'github-icon-active'
-                      : 'github-icon'
-                  }.png`}
-                  alt="github logo"
-                  className={'w-10'}
-                />
-              </a>
-            )}
+            {githubUrl && <GithubButton githubUrl={githubUrl} size={10} />}
 
             {videoId && (
               <div
@@ -75,6 +64,7 @@ function ProjectCard(props: ProjectCardProps) {
                 }
                 onMouseEnter={() => setHoveredIcon('play')}
                 onMouseLeave={() => setHoveredIcon(null)}
+                className="cursor-pointer"
               >
                 <img
                   src={`/images/${

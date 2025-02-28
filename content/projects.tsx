@@ -182,7 +182,7 @@ export const PROJECTS: Record<string, Project> = {
     image: <img src="images/gce-screenshot-1.png" alt="" className="img" />,
   },
   reorderWanikaniDeck: {
-    name: 'Japanese deck optimisation',
+    name: 'Moekani',
     technologies: [TECHNOLOGIES.python],
     shortDescription: `Reorders a wanikani deck, so that the order of the kanji and vocab decks match the order of the kanji and vocab shown in TheMoeWay N5 japanese deck.`,
     projectType: 'Personal project',
@@ -192,7 +192,7 @@ export const PROJECTS: Record<string, Project> = {
     image: <img src="images/gce-screenshot-1.png" alt="" className="img" />,
   },
   moekani: {
-    name: 'Moekani',
+    name: 'Moekani 2',
     technologies: [TECHNOLOGIES.python],
     shortDescription: `Creates an Anki deck based on an existing japanese deck, TheMoeWay, and data queried from the api of Wanikani, a kanji learning tool.`,
     projectType: 'Personal project',
