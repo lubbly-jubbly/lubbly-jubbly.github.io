@@ -9,8 +9,6 @@ type AnkiProjectCardProps = {
 }
 
 function AnkiProjectCard(props: AnkiProjectCardProps) {
-  const [hoveredIcon, setHoveredIcon] = useState<string | null>(null)
-
   const subprojectCard = (subproject: Project, i: number) => (
     <div
       key={i}
