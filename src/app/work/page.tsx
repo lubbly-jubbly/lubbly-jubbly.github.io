@@ -40,10 +40,11 @@ function WorkPage() {
         videoId={modalVideoId}
         onClose={() => setModal(!modal)}
       />
-      <ProjectCard project={PROJECTS.gce} alignment={'right'} />
+      <ProjectCard project={PROJECTS.pubble} alignment={'right'} />
+      <ProjectCard project={PROJECTS.gce} alignment={'left'} />
       <ProjectCard
         project={PROJECTS.switch}
-        alignment={'left'}
+        alignment={'right'}
         openModal={handleClick}
       />
       <AnkiProjectCard project={PROJECTS.anki} />

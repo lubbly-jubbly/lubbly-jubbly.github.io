@@ -7,6 +7,10 @@ type FormInputProps = {
   placeholder: string
   textarea?: boolean
   error?: string
+  value: string
+  onChange: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void
 }
 
 const FormInput: React.FC<FormInputProps> = ({
@@ -15,6 +19,8 @@ const FormInput: React.FC<FormInputProps> = ({
   placeholder,
   textarea,
   error,
+  value,
+  onChange,
 }) => {
   return (
     <div>
@@ -23,6 +29,8 @@ const FormInput: React.FC<FormInputProps> = ({
           className="input placeholder-placeholder-text"
           name={name}
           placeholder={placeholder}
+          value={value}
+          onChange={onChange}
         />
       ) : (
         <input
@@ -30,6 +38,8 @@ const FormInput: React.FC<FormInputProps> = ({
           type={type}
           name={name}
           placeholder={placeholder}
+          value={value}
+          onChange={onChange}
         />
       )}
       <div className={styles.errorContainer}>{error && <p>{error}</p>}</div>

@@ -21,7 +21,7 @@ const GithubButton = ({ githubUrl, size }: GithubButtonProps) => {
       <img
         src={`/images/${hovered ? 'github-icon-active' : 'github-icon'}.png`}
         alt="github logo"
-        className={size ? `w-${size}` : 'w-10'}
+        style={{ width: size ? `${size / 4}rem` : '12rem' }}
       />
     </a>
   )

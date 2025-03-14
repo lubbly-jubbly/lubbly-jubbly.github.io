@@ -185,6 +185,16 @@ export const TECHNOLOGIES: Record<string, Technology> = {
     ],
     icon: <i className="devicon-sass-plain colored"></i>,
   },
+  flask: {
+    name: 'Flask',
+    categories: [TechCategory.backend, TechCategory.librariesAndFrameworks],
+    icon: <i className="devicon-flask-original colored"></i>,
+  },
+  vercel: {
+    name: 'Vercel',
+    categories: [TechCategory.contentPlatforms],
+    icon: <i className="devicon-vercel-original colored"></i>,
+  },
 }
 
 export const getNamesOfTechnologiesInCategory = (

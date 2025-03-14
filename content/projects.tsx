@@ -11,7 +11,6 @@ export type Project = {
   githubUrl?: string
   liveUrl?: string
   imageUrls: string[]
-  image: JSX.Element
   videoId?: string
 }
 
@@ -62,25 +61,6 @@ export const PROJECTS: Record<string, Project> = {
       'images/switchScreenshots/view-requests.png',
       'images/switchScreenshots/view-team.png',
     ],
-    image: (
-      <div className="flex flex-row gap-2">
-        <img
-          className="w-1/3"
-          src="images/switchScreenshots/add-shift.png"
-          alt=""
-        />
-        <img
-          className="w-1/3"
-          src="images/switchScreenshots/employee-view-requests.png"
-          alt=""
-        />
-        <img
-          className="w-1/3"
-          src="images/switchScreenshots/day-details.png"
-          alt=""
-        />
-      </div>
-    ),
     videoId: 'hkhQliBpbDE?si=XBIHWeluysoaj2HS',
   },
   gce: {
@@ -97,32 +77,36 @@ export const PROJECTS: Record<string, Project> = {
     url: './work/gce',
     logo: <img src="images/gce-logo.png" alt="GCE logo" />,
     date: 'April 2024 - Present',
-    liveUrl: 'https://www.glasgowenergy.coop/',
+    // liveUrl: 'https://www.glasgowenergy.coop/',
     imageUrls: [
       'images/gceScreenshots/map.png',
       'images/gceScreenshots/membership-checkout.png',
       'images/gceScreenshots/become-member.png',
     ],
-    image: <img src="images/gceScreenshots/map.png" alt="" />,
   },
   pubble: {
     name: 'Pubble',
     technologies: [
-      TECHNOLOGIES.javascript,
-      TECHNOLOGIES.html,
-      TECHNOLOGIES.css,
+      TECHNOLOGIES.nextjs,
+      TECHNOLOGIES.react,
+      TECHNOLOGIES.typescript,
+      TECHNOLOGIES.tailwind,
+      TECHNOLOGIES.flask,
       TECHNOLOGIES.python,
+      TECHNOLOGIES.redis,
     ],
     shortDescription:
-      'Find the perfect pub! A web app that finds the pub equidistant to addresses entered',
+      'Find the perfect pub! A web app that finds a list of pubs equidistant to the addresses entered.',
     projectType: 'Personal project',
     url: './work/pubble',
     logo: <img src="images/pubble-logo.svg" alt="Pubble logo" />,
     date: 'Aug 2024 - Present',
     githubUrl: 'https://github.com/caiodrear/pubble',
-    liveUrl: 'https://pubble.azurewebsites.net/',
-    imageUrls: [],
-    image: <img src="images/gce-screenshot-1.png" alt="" className="img" />,
+    liveUrl: 'https://pubble-live.vercel.app',
+    imageUrls: [
+      'images/pubbleScreenshots/home.png',
+      'images/pubbleScreenshots/results.png',
+    ],
   },
   vor: {
     name: 'VOR',
@@ -140,7 +124,6 @@ export const PROJECTS: Record<string, Project> = {
     logo: <img src="images/vor-logo.png" alt="VOR logo" />,
     date: 'Nov 2022 - May 2024',
     imageUrls: [],
-    image: <img src="images/gce-screenshot-1.png" alt="" className="img" />,
   },
   portfolio: {
     name: 'This Site',
@@ -158,7 +141,6 @@ export const PROJECTS: Record<string, Project> = {
     date: 'Jan 2024 - Present',
     githubUrl: 'https://github.com/lubbly-jubbly/lubbly-jubbly.github.io',
     imageUrls: [],
-    image: <img src="images/gce-screenshot-1.png" alt="" className="img" />,
   },
   anki: {
     name: 'Anki',
@@ -169,7 +151,6 @@ export const PROJECTS: Record<string, Project> = {
     date: 'Oct 2024 - Jan 2025',
     githubUrl: '',
     imageUrls: [],
-    image: <img src="images/gce-screenshot-1.png" alt="" className="img" />,
   },
   germanVocabDeck: {
     name: 'German Vocab Deck',
@@ -179,7 +160,6 @@ export const PROJECTS: Record<string, Project> = {
     date: 'Nov 2024',
     githubUrl: 'https://github.com/lubbly-jubbly/german-cafe-vocab-deck',
     imageUrls: [],
-    image: <img src="images/gce-screenshot-1.png" alt="" className="img" />,
   },
   reorderWanikaniDeck: {
     name: 'Moekani',
@@ -189,7 +169,6 @@ export const PROJECTS: Record<string, Project> = {
     date: 'Oct - Nov 2024',
     githubUrl: 'https://github.com/lubbly-jubbly/moekani',
     imageUrls: [],
-    image: <img src="images/gce-screenshot-1.png" alt="" className="img" />,
   },
   moekani: {
     name: 'Moekani 2',
@@ -199,6 +178,5 @@ export const PROJECTS: Record<string, Project> = {
     date: 'Jan 2025',
     githubUrl: 'https://github.com/lubbly-jubbly/moekani-2',
     imageUrls: [],
-    image: <img src="images/gce-screenshot-1.png" alt="" className="img" />,
   },
 }

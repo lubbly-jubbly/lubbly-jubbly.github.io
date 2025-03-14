@@ -24,15 +24,6 @@
     #ffb7e2,
     #fa6e6e,
     #ff0000
-      /* #ff0000,
-    #ff7300,
-    #fffb00,
-    #48ff00,
-    #00ffd5,
-    #002bff,
-    #7a00ff,
-    #ff00c8,
-    #ff0000 */
   );
 }
 
@@ -109,6 +100,10 @@
 
 .disco-item-blue-3 {
   --gradient-colors: linear-gradient(75deg, #6122ff, #dce3fa, #deff8c, #1500ff);
+}
+
+.disco-item-pubble {
+  --gradient-colors: linear-gradient(75deg, #4772ff, #fd7644, #c5ebef, #4772ff);
 }
 
 .disco-item:before {

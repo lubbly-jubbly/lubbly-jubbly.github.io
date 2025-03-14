@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import FormInput from '../../components/formInput'
 import styles from './contact.module.css'
 import { ReactSketchCanvas, ReactSketchCanvasRef } from 'react-sketch-canvas'
@@ -9,23 +9,30 @@ import { faRedo } from '@fortawesome/free-solid-svg-icons'
 function ContactPage() {
   const canvasRef = useRef<ReactSketchCanvasRef | null>(null)
 
+  const defaultInputValues = {
+    name: '',
+    email: '',
+    message: '',
+  }
+
   const defaultInputErrors = {
     name: '',
     email: '',
     message: '',
   }
 
-  const [inputErrors, setInputErrors] = React.useState<{
-    name: string
-    email: string
-    message: string
-  }>({
-    name: '',
-    email: '',
-    message: '',
-  })
+  const [inputValues, setInputValues] = useState(defaultInputValues)
+  const [inputErrors, setInputErrors] = useState(defaultInputErrors)
+  const [success, setSuccess] = useState<boolean>(false)
 
-  const [success, setSuccess] = React.useState<boolean>(false)
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setInputValues({
+      ...inputValues,
+      [e.target.name]: e.target.value,
+    })
+  }
 
   async function handleSubmit(event: any) {
     const drawingSvg = await canvasRef?.current?.exportSvg()
@@ -39,7 +46,6 @@ function ContactPage() {
     formData.append('access_key', 'ac3442b0-b10c-475b-b0d6-0a2aabaddcc5')
 
     const object = Object.fromEntries(formData)
-
     const json = JSON.stringify(object)
 
     const response = await fetch('https://api.web3forms.com/submit', {
@@ -50,35 +56,37 @@ function ContactPage() {
       },
       body: json,
     })
+
     const result = await response.json()
     if (result.success) {
       setInputErrors(defaultInputErrors)
+      setInputValues(defaultInputValues) // Clear input fields
       setSuccess(true)
+      canvasRef?.current?.clearCanvas() // Clear drawing
     }
   }
 
   const validateInputs = (event: any) => {
     event.preventDefault()
-    const inputs = new FormData(event.target)
     const validEmailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
-    const emailValid = validEmailRegex.test(
-      inputs.get('email')?.toString() ?? ''
-    )
+    const emailValid = validEmailRegex.test(inputValues.email)
+
     const errors = {
       name: '',
       email: '',
       message: '',
     }
+
     let valid = true
-    if (inputs.get('name')?.length === 0) {
+    if (inputValues.name.trim() === '') {
       errors.name = 'Please enter your name'
       valid = false
     }
-    if (inputs.get('message')?.length === 0) {
+    if (inputValues.message.trim() === '') {
       errors.message = 'Please enter a message'
       valid = false
     }
-    if (inputs.get('email')?.length === 0) {
+    if (inputValues.email.trim() === '') {
       errors.email = 'Please enter your email'
       valid = false
     } else if (!emailValid) {
@@ -86,7 +94,7 @@ function ContactPage() {
       valid = false
     }
 
-    if (valid === false) {
+    if (!valid) {
       setInputErrors(errors)
       return
     }
@@ -122,18 +130,24 @@ function ContactPage() {
                 name="name"
                 placeholder="Name"
                 error={inputErrors.name}
+                value={inputValues.name}
+                onChange={handleChange}
               />
               <FormInput
                 type="email"
                 name="email"
                 placeholder="Email"
                 error={inputErrors.email}
+                value={inputValues.email}
+                onChange={handleChange}
               />
               <FormInput
                 name="message"
                 placeholder="Message"
                 textarea
                 error={inputErrors.message}
+                value={inputValues.message}
+                onChange={handleChange}
               />
             </div>
             <div className="relative w-full">

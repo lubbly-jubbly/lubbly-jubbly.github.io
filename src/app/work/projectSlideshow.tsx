@@ -48,7 +48,14 @@ export default function ProjectSlideshow(props: ProjectSlideshowProps) {
               key={index}
               className="flex flex-row justify-center items-center p-3"
             >
-              <div className="disco-item" key={index}>
+              <div
+                className={
+                  props.projectName === PROJECTS.pubble.name
+                    ? 'disco-item disco-item-pubble'
+                    : 'disco-item'
+                }
+                key={index}
+              >
                 <img src={url} alt="" className="h-full" />
               </div>
             </div>

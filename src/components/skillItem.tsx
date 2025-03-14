@@ -8,7 +8,7 @@ type SkillItemProps = {
 
 function SkillItem(props: SkillItemProps) {
   return (
-    <div className="flex flex-row items-center gap-2">
+    <div className="flex flex-row items-center gap-2 ">
       <div
         className={`${
           props.small ? 'text-l w-4 h-4' : 'text-2xl w-7 h-7'

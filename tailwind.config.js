@@ -28,6 +28,7 @@ module.exports = {
       other: 'rgb(0, 124, 41)',
 
       'placeholder-text': '#777c99',
+      white: '#ffffff',
     },
     extend: {
       fontFamily: {
