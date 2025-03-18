@@ -52,7 +52,7 @@ const Navbar = () => {
             alt="libby rear"
             width={0}
             height={0}
-            style={{ width: '400px', height: 'auto' }}
+            className="w-96 h-auto"
           />
         </Link>
       </div>
@@ -81,15 +81,14 @@ const Navbar = () => {
                         : '/images/navbar/briefcase-closed.png'
                     }
                     alt="briefcase"
-                    className={
+                    className={`${
                       hoveredNavItem === 'briefcase' ||
                       activeNavItem === 'briefcase'
                         ? styles.workLinkActive
                         : styles.workLink
-                    }
+                    } w-24 h-auto`}
                     width={0}
                     height={0}
-                    style={{ width: '100px', height: 'auto' }}
                   />
                 </div>
                 <div className="mt-2">
@@ -102,7 +101,7 @@ const Navbar = () => {
                     alt="my work text"
                     width={0}
                     height={0}
-                    style={{ width: 'auto', height: '40px' }}
+                    className="w-auto h-10"
                   />
                 </div>
               </div>
@@ -128,14 +127,13 @@ const Navbar = () => {
                         : '/images/navbar/plant-baby.png'
                     }
                     alt="a potted plant"
-                    className={
+                    className={`${
                       hoveredNavItem === 'plant' || activeNavItem === 'plant'
                         ? styles.skillsLinkActive
                         : styles.skillsLink
-                    }
+                    } w-24 h-auto`}
                     width={0}
                     height={0}
-                    style={{ width: '100px', height: 'auto' }}
                   />
                 </div>
                 <div className="mt-2">
@@ -148,7 +146,7 @@ const Navbar = () => {
                     alt="skills text"
                     width={0}
                     height={0}
-                    style={{ width: 'auto', height: '40px' }}
+                    className="w-auto h-10"
                   />
                 </div>
               </div>
@@ -174,14 +172,13 @@ const Navbar = () => {
                         : '/images/navbar/paper.png'
                     }
                     alt="bit of paper"
-                    className={
+                    className={`${
                       hoveredNavItem === 'paper'
                         ? styles.cvLinkActive
                         : styles.cvLink
-                    }
+                    } w-24 h-auto`}
                     width={0}
                     height={0}
-                    style={{ width: '100px', height: 'auto' }}
                   />
                 </div>
                 <div className="mt-2">
@@ -190,7 +187,7 @@ const Navbar = () => {
                     alt="cv text"
                     width={0}
                     height={0}
-                    style={{ width: 'auto', height: '32px' }}
+                    className="w-auto h-8"
                   />
                 </div>
               </div>
@@ -219,15 +216,14 @@ const Navbar = () => {
                         : '/images/navbar/telephone.png'
                     }
                     alt="a red old-fashioned telephone"
-                    className={
+                    className={`${
                       hoveredNavItem === 'telephone' ||
                       activeNavItem === 'telephone'
                         ? styles.contactLinkActive
                         : styles.contactLink
-                    }
+                    }`}
                     width={0}
                     height={0}
-                    style={{ width: '110px', height: 'auto' }}
                   />
                 </div>
                 <div className="mt-2">
@@ -240,7 +236,7 @@ const Navbar = () => {
                     alt="contact me text"
                     width={0}
                     height={0}
-                    style={{ width: 'auto', height: '40px' }}
+                    className="w-auto h-10"
                   />
                 </div>
               </div>
