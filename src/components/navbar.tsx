@@ -2,6 +2,7 @@
 import Link from 'next/link'
 import { useRef, useState } from 'react'
 import styles from './navbar.module.css'
+import Image from 'next/image'
 
 const Navbar = () => {
   const [hoveredNavItem, setHoveredNavItem] = useState<string | null>(null)
@@ -46,10 +47,12 @@ const Navbar = () => {
     <div>
       <div className={'d-flex justify-content-center'}>
         <Link href={'/'} onClick={() => setActiveNavItem('home')}>
-          <img
+          <Image
             src="/images/navbar/libby-rear-logo-3.png"
             alt="libby rear"
-            width={400}
+            width={0}
+            height={0}
+            style={{ width: '400px', height: 'auto' }}
           />
         </Link>
       </div>
@@ -70,7 +73,7 @@ const Navbar = () => {
                 }}
               >
                 <div className={styles.briefcaseContainer}>
-                  <img
+                  <Image
                     src={
                       hoveredNavItem === 'briefcase' ||
                       activeNavItem === 'briefcase'
@@ -84,17 +87,22 @@ const Navbar = () => {
                         ? styles.workLinkActive
                         : styles.workLink
                     }
+                    width={0}
+                    height={0}
+                    style={{ width: '100px', height: 'auto' }}
                   />
                 </div>
                 <div className="mt-2">
-                  <img
+                  <Image
                     src={
                       activeNavItem === 'briefcase'
                         ? '/images/navbar/my-work-text-active.png'
                         : '/images/navbar/my-work-text.png'
                     }
                     alt="my work text"
-                    className="h-10"
+                    width={0}
+                    height={0}
+                    style={{ width: 'auto', height: '40px' }}
                   />
                 </div>
               </div>
@@ -113,7 +121,7 @@ const Navbar = () => {
                 onClick={() => handleClickNavItem('plant', plantAudioUrl)}
               >
                 <div className={styles.plantContainer}>
-                  <img
+                  <Image
                     src={
                       hoveredNavItem === 'plant' || activeNavItem === 'plant'
                         ? '/images/navbar/plant-flowered.png'
@@ -125,17 +133,22 @@ const Navbar = () => {
                         ? styles.skillsLinkActive
                         : styles.skillsLink
                     }
+                    width={0}
+                    height={0}
+                    style={{ width: '100px', height: 'auto' }}
                   />
                 </div>
                 <div className="mt-2">
-                  <img
+                  <Image
                     src={
                       activeNavItem === 'plant'
                         ? '/images/navbar/skills-text-active.png'
                         : '/images/navbar/skills-text.png'
                     }
                     alt="skills text"
-                    className="h-10"
+                    width={0}
+                    height={0}
+                    style={{ width: 'auto', height: '40px' }}
                   />
                 </div>
               </div>
@@ -154,7 +167,7 @@ const Navbar = () => {
                 onClick={() => handleStopNavItemHover('paper', paperAudioUrl)}
               >
                 <div className={styles.paperContainer}>
-                  <img
+                  <Image
                     src={
                       hoveredNavItem === 'paper'
                         ? '/images/navbar/crumpled-paper.png'
@@ -166,13 +179,18 @@ const Navbar = () => {
                         ? styles.cvLinkActive
                         : styles.cvLink
                     }
+                    width={0}
+                    height={0}
+                    style={{ width: '100px', height: 'auto' }}
                   />
                 </div>
                 <div className="mt-2">
-                  <img
+                  <Image
                     src={'/images/navbar/cv-text.png'}
                     alt="cv text"
-                    className="h-8"
+                    width={0}
+                    height={0}
+                    style={{ width: 'auto', height: '32px' }}
                   />
                 </div>
               </div>
@@ -193,7 +211,7 @@ const Navbar = () => {
                 }
               >
                 <div className={styles.telephoneContainer}>
-                  <img
+                  <Image
                     src={
                       hoveredNavItem === 'telephone' ||
                       activeNavItem === 'telephone'
@@ -207,17 +225,22 @@ const Navbar = () => {
                         ? styles.contactLinkActive
                         : styles.contactLink
                     }
+                    width={0}
+                    height={0}
+                    style={{ width: '110px', height: 'auto' }}
                   />
                 </div>
                 <div className="mt-2">
-                  <img
+                  <Image
                     src={
                       activeNavItem === 'telephone'
                         ? '/images/navbar/contact-me-text-active.png'
                         : '/images/navbar/contact-me-text.png'
                     }
                     alt="contact me text"
-                    className="h-10"
+                    width={0}
+                    height={0}
+                    style={{ width: 'auto', height: '40px' }}
                   />
                 </div>
               </div>
