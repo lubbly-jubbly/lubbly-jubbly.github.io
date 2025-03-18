@@ -12,15 +12,6 @@ function Links() {
           </div>
           <div>libby.rear@gmail.com</div>
         </Link>
-        <div className={styles.contactLink}>
-          <div className={styles.iconContainer}>
-            <img
-              src={'/images/phone-icon.png'}
-              alt="a red old-fashioned telephone"
-            />
-          </div>
-          <div>+44 7402 219371</div>
-        </div>
         <Link
           href="https://github.com/lubbly-jubbly"
           target="_blank"
