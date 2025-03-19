@@ -44,7 +44,7 @@ function AnkiProjectCard(props: AnkiProjectCardProps) {
 
       <div className="relative z-20 mb-8">{props.project.shortDescription}</div>
 
-      <div className="flex flex-row justify-between gap-4">
+      <div className="flex flex-row justify-between gap-7 flex-wrap">
         <div className="rotate-[2deg]">
           {subprojectCard(PROJECTS.germanVocabDeck, 0)}
         </div>
