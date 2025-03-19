@@ -1,14 +1,17 @@
 'use client'
 import Link from 'next/link'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import styles from './navbar.module.css'
 import Image from 'next/image'
+import { usePathname } from 'next/navigation'
 
 const Navbar = () => {
   const [hoveredNavItem, setHoveredNavItem] = useState<string | null>(null)
   const [activeNavItem, setActiveNavItem] = useState<string | null>(null)
 
   const audioRef = useRef<HTMLAudioElement | null>(null)
+
+  const pathname = usePathname()
 
   const paperAudioUrl = '/sounds/crumpling-paper.mp3'
   const briefcaseAudioUrl = '/sounds/briefcase-opening.mp3'
@@ -40,8 +43,13 @@ const Navbar = () => {
   }
   const handleClickNavItem = (navItem: string, audioPath: string) => {
     stopAudio(audioPath)
-    setActiveNavItem(navItem)
   }
+
+  useEffect(() => {
+    const pageName = pathname?.split('/').pop()
+    console.log(pageName)
+    setActiveNavItem(pageName ?? '')
+  }, [pathname])
 
   return (
     <div>
@@ -52,7 +60,7 @@ const Navbar = () => {
             alt="libby rear"
             width={0}
             height={0}
-            className="w-96 h-auto"
+            className="w-auto h-44"
           />
         </Link>
       </div>
@@ -63,27 +71,25 @@ const Navbar = () => {
               <div
                 className={styles.navItemContainer}
                 onMouseEnter={() =>
-                  handleStartNavItemHover('briefcase', briefcaseAudioUrl)
+                  handleStartNavItemHover('work', briefcaseAudioUrl)
                 }
                 onMouseLeave={() =>
-                  handleStopNavItemHover('briefcase', briefcaseAudioUrl)
+                  handleStopNavItemHover('work', briefcaseAudioUrl)
                 }
                 onClick={() => {
-                  handleClickNavItem('briefcase', briefcaseAudioUrl)
+                  handleClickNavItem('work', briefcaseAudioUrl)
                 }}
               >
                 <div className={styles.briefcaseContainer}>
                   <Image
                     src={
-                      hoveredNavItem === 'briefcase' ||
-                      activeNavItem === 'briefcase'
+                      hoveredNavItem === 'work' || activeNavItem === 'work'
                         ? '/images/navbar/briefcase-open.png'
                         : '/images/navbar/briefcase-closed.png'
                     }
                     alt="briefcase"
                     className={`${
-                      hoveredNavItem === 'briefcase' ||
-                      activeNavItem === 'briefcase'
+                      hoveredNavItem === 'work' || activeNavItem === 'work'
                         ? styles.workLinkActive
                         : styles.workLink
                     } w-24 h-auto`}
@@ -94,7 +100,7 @@ const Navbar = () => {
                 <div className="mt-2">
                   <Image
                     src={
-                      activeNavItem === 'briefcase'
+                      activeNavItem === 'work'
                         ? '/images/navbar/my-work-text-active.png'
                         : '/images/navbar/my-work-text.png'
                     }
@@ -112,23 +118,23 @@ const Navbar = () => {
               <div
                 className={styles.navItemContainer}
                 onMouseEnter={() => {
-                  handleStartNavItemHover('plant', plantAudioUrl)
+                  handleStartNavItemHover('skills', plantAudioUrl)
                 }}
                 onMouseLeave={() =>
-                  handleStopNavItemHover('plant', plantAudioUrl)
+                  handleStopNavItemHover('skills', plantAudioUrl)
                 }
-                onClick={() => handleClickNavItem('plant', plantAudioUrl)}
+                onClick={() => handleClickNavItem('skills', plantAudioUrl)}
               >
                 <div className={styles.plantContainer}>
                   <Image
                     src={
-                      hoveredNavItem === 'plant' || activeNavItem === 'plant'
+                      hoveredNavItem === 'skills' || activeNavItem === 'skills'
                         ? '/images/navbar/plant-flowered.png'
                         : '/images/navbar/plant-baby.png'
                     }
                     alt="a potted plant"
                     className={`${
-                      hoveredNavItem === 'plant' || activeNavItem === 'plant'
+                      hoveredNavItem === 'skills' || activeNavItem === 'skills'
                         ? styles.skillsLinkActive
                         : styles.skillsLink
                     } w-24 h-auto`}
@@ -139,7 +145,7 @@ const Navbar = () => {
                 <div className="mt-2">
                   <Image
                     src={
-                      activeNavItem === 'plant'
+                      activeNavItem === 'skills'
                         ? '/images/navbar/skills-text-active.png'
                         : '/images/navbar/skills-text.png'
                     }
@@ -157,23 +163,21 @@ const Navbar = () => {
               <div
                 className={styles.navItemContainer}
                 onMouseEnter={() => {
-                  handleStartNavItemHover('paper', paperAudioUrl)
+                  handleStartNavItemHover('cv', paperAudioUrl)
                 }}
-                onMouseLeave={() =>
-                  handleStopNavItemHover('paper', paperAudioUrl)
-                }
-                onClick={() => handleStopNavItemHover('paper', paperAudioUrl)}
+                onMouseLeave={() => handleStopNavItemHover('cv', paperAudioUrl)}
+                onClick={() => handleStopNavItemHover('cv', paperAudioUrl)}
               >
                 <div className={styles.paperContainer}>
                   <Image
                     src={
-                      hoveredNavItem === 'paper'
+                      hoveredNavItem === 'cv'
                         ? '/images/navbar/crumpled-paper.png'
                         : '/images/navbar/paper.png'
                     }
                     alt="bit of paper"
                     className={`${
-                      hoveredNavItem === 'paper'
+                      hoveredNavItem === 'cv'
                         ? styles.cvLinkActive
                         : styles.cvLink
                     } w-24 h-auto`}
@@ -198,27 +202,25 @@ const Navbar = () => {
               <div
                 className={styles.navItemContainer}
                 onMouseEnter={() =>
-                  handleStartNavItemHover('telephone', telephoneAudioUrl)
+                  handleStartNavItemHover('contact', telephoneAudioUrl)
                 }
                 onMouseLeave={() =>
-                  handleStopNavItemHover('telephone', telephoneAudioUrl)
+                  handleStopNavItemHover('contact', telephoneAudioUrl)
                 }
-                onClick={() =>
-                  handleClickNavItem('telephone', telephoneAudioUrl)
-                }
+                onClick={() => handleClickNavItem('contact', telephoneAudioUrl)}
               >
                 <div className={styles.telephoneContainer}>
                   <Image
                     src={
-                      hoveredNavItem === 'telephone' ||
-                      activeNavItem === 'telephone'
+                      hoveredNavItem === 'contact' ||
+                      activeNavItem === 'contact'
                         ? '/images/navbar/telephone-ringing.png'
                         : '/images/navbar/telephone.png'
                     }
                     alt="a red old-fashioned telephone"
                     className={`${
-                      hoveredNavItem === 'telephone' ||
-                      activeNavItem === 'telephone'
+                      hoveredNavItem === 'contact' ||
+                      activeNavItem === 'contact'
                         ? styles.contactLinkActive
                         : styles.contactLink
                     }`}
@@ -229,7 +231,7 @@ const Navbar = () => {
                 <div className="mt-2">
                   <Image
                     src={
-                      activeNavItem === 'telephone'
+                      activeNavItem === 'contact'
                         ? '/images/navbar/contact-me-text-active.png'
                         : '/images/navbar/contact-me-text.png'
                     }

@@ -8,6 +8,7 @@ import 'react-slideshow-image/dist/styles.css'
 import { PROJECTS } from '../../../content/projects'
 import styles from './switch.module.css'
 import SwitchScreenshotSlideshow from './switchScreenshotSlideshow'
+import Image from 'next/image'
 
 function Switch() {
   const [hoveredIcon, setHoveredIcon] = useState<string | null>(null)
@@ -35,7 +36,7 @@ function Switch() {
                 onMouseEnter={() => setHoveredIcon('github')}
                 onMouseLeave={() => setHoveredIcon(null)}
               >
-                <img
+                <Image
                   src={`/images/${
                     hoveredIcon === 'github'
                       ? 'github-icon-active'
@@ -50,7 +51,7 @@ function Switch() {
                 onMouseEnter={() => setHoveredIcon('play')}
                 onMouseLeave={() => setHoveredIcon(null)}
               >
-                <img
+                <Image
                   src={`/images/${
                     hoveredIcon === 'play' ? 'play-icon-active' : 'play-icon'
                   }.png`}

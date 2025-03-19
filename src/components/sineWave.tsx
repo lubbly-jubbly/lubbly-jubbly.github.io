@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import './sineWave.css'
+import Image from 'next/image'
 
 type SineWaveProps = {}
 
@@ -22,7 +23,7 @@ const SineWave: React.FC<SineWaveProps> = ({}) => {
     <div>
       <div className="shape-container shape-container--with-indicators">
         <div className="shape">
-          <img src="images/gce-logo.png" alt="GCE logo" />
+          <Image src="images/gce-logo.png" alt="GCE logo" />
         </div>
       </div>
 

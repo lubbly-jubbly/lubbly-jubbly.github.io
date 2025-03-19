@@ -2,6 +2,7 @@
 import { Slide } from 'react-slideshow-image'
 import 'react-slideshow-image/dist/styles.css'
 import styles from './switchScreenshotSlideshow.module.css'
+import Image from 'next/image'
 
 function SwitchScreenshotSlideshow() {
   const imagesBaseUrl = '/images/switchScreenshots/'
@@ -184,10 +185,10 @@ function SwitchScreenshotSlideshow() {
   const imageWithCaption = (url: string, caption: JSX.Element) => (
     <div className={styles.imageWithCaption}>
       <div className={styles.imageContainer}>
-        <img
+        <Image
           src={imagesBaseUrl + url}
           alt="a screenshot of Switch"
-          width={'100%'}
+          className="w-full"
         />
       </div>
       <p className={styles.caption}>{caption}</p>

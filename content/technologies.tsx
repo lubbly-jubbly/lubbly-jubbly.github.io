@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 export enum TechCategory {
   languages = 'Languages',
   librariesAndFrameworks = 'Libraries and Frameworks',
@@ -53,9 +55,12 @@ export const TECHNOLOGIES: Record<string, Technology> = {
     name: 'Python',
     categories: [TechCategory.languages, TechCategory.backend],
     icon: (
-      <img
+      <Image
         src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg"
         alt="python logo"
+        width={0}
+        height={0}
+        className="w-auto h-full"
       />
     ),
   },
@@ -150,9 +155,12 @@ export const TECHNOLOGIES: Record<string, Technology> = {
     name: 'Figma',
     categories: [TechCategory.design, TechCategory.tools],
     icon: (
-      <img
+      <Image
         src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg"
         alt="figma logo"
+        width={0}
+        height={0}
+        className="w-full h-auto"
       />
     ),
   },

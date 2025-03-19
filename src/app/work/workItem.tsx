@@ -1,5 +1,6 @@
 import SkillList from '@/components/skillList'
 import { Project } from '../../../content/projects'
+import Image from 'next/image'
 
 type WorkItemProps = {
   project: Project
@@ -20,7 +21,7 @@ function WorkItem(props: WorkItemProps) {
         className="flex flex-col justify-between h-100"
       >
         <div className="flex flex-col gap-y-3">
-          <img src="images/gce-screenshot-1.png" alt="" />
+          <Image src="images/gce-screenshot-1.png" alt="" />
 
           <div className="flex flex-row items-center gap-x-4">
             <div className="w-11">{logo}</div>

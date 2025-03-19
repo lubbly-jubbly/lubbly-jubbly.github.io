@@ -9,6 +9,7 @@ import {
   Technology,
 } from '../../../content/technologies'
 import styles from './skills.module.css'
+import Image from 'next/image'
 
 function SkillsPage() {
   const visibleTechnologies = TECHNOLOGIES
@@ -276,35 +277,38 @@ function SkillsPage() {
         {gameToolsRendered ? (
           <div className="flex justify-center items-center gap-8 py-2  ">
             <button disabled={!gameToolsVisible}>
-              <img
+              <Image
                 onClick={stopAnimations}
                 src={'images/whistle.webp'}
                 alt={'a silver whistle'}
-                width={70}
+                width={0}
+                height={0}
                 className={`${styles.tool} ${
                   gameToolsVisible ? styles.fadeIn : ''
                 } ${gameToolsFadingOut ? styles.fadeOut : ''}
-            `}
+            w-16 h-auto`}
               />
             </button>
-            <img
+            <Image
               src={'images/net.png'}
               alt={''}
-              width={100}
-              className={netMoved ? 'invisible' : 'hidden'}
+              width={0}
+              height={0}
+              className={`${netMoved ? 'invisible' : 'hidden'} w-24 h-auto`}
             />
             <button disabled={!gameToolsVisible}>
-              <img
+              <Image
                 ref={netRef}
                 onMouseDown={interactWithNet(netRef)}
                 src={'images/net.png'}
                 alt={'a net'}
-                width={100}
+                width={0}
+                height={0}
                 className={`-rotate-[60deg] ${netMoved ? 'absolute' : ''} ${
                   styles.tool
                 }  ${gameToolsVisible ? styles.fadeIn : ''} ${
                   gameToolsFadingOut ? styles.fadeOut : ''
-                }`}
+                } w-24 h-auto`}
               />
             </button>
           </div>

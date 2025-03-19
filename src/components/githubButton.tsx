@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image'
 import React, { useState } from 'react'
 
 type GithubButtonProps = {
@@ -18,9 +19,12 @@ const GithubButton = ({ githubUrl, size }: GithubButtonProps) => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <img
+      <Image
         src={`/images/${hovered ? 'github-icon-active' : 'github-icon'}.png`}
         alt="github logo"
+        width={0}
+        height={0}
+        className="h-auto"
         style={{ width: size ? `${size / 4}rem` : '12rem' }}
       />
     </a>

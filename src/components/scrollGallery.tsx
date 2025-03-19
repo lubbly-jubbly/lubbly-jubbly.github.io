@@ -8,6 +8,7 @@ import {
   useState,
 } from 'react'
 import { scrollToX } from '../../utils/scroll'
+import Image from 'next/image'
 
 export const ScrollGallery: FC<
   PropsWithChildren<{ itemWidth: number; gapWidth: number }>
@@ -93,14 +94,14 @@ export const ScrollGallery: FC<
           onClick={handleClickPrevious}
           disabled={!scrollNavigation.prev}
         >
-          <img src="/images/back-arrow.png" alt="back arrow" width={40} />
+          <Image src="/images/back-arrow.png" alt="back arrow" width={40} />
         </button>
         <button
           className="absolute right-10 bottom-0 hidden items-center gap-2 py-2 px-4 md:flex -scale-x-100 opacity-80 hover:opacity-100 disabled:opacity-30 disabled:hover:opacity-30"
           onClick={handleClickNext}
           disabled={!scrollNavigation.next}
         >
-          <img src="/images/back-arrow.png" alt="back arrow" width={40} />
+          <Image src="/images/back-arrow.png" alt="back arrow" width={40} />
         </button>
       </div>
     </>

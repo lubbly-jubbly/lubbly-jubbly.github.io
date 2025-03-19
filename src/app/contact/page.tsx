@@ -5,6 +5,7 @@ import styles from './contact.module.css'
 import { ReactSketchCanvas, ReactSketchCanvasRef } from 'react-sketch-canvas'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRedo } from '@fortawesome/free-solid-svg-icons'
+import Image from 'next/image'
 
 function ContactPage() {
   const canvasRef = useRef<ReactSketchCanvasRef | null>(null)
@@ -110,10 +111,12 @@ function ContactPage() {
     <div>
       <div className="flex flex-col items-center">
         <div className="flex flex-col items-center px-12 w-[500px]">
-          <img
+          <Image
             src="/images/get-in-touch-text.png"
             alt="get in touch text"
-            width={300}
+            width={0}
+            height={0}
+            className="h-24 w-auto"
           />
           <div className="pb-3 text-center">
             I'd love to hear from you! Please get in touch using the form or
