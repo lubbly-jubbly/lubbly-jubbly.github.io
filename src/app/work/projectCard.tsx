@@ -41,7 +41,7 @@ function ProjectCard(props: ProjectCardProps) {
       >
         <div
           className={
-            'self-end row-start-1 row-span-1 col-span-6 max-md:flex max-md:flex-col max-md:justify-center max-md:h-full max-md:col-span-full relative ' +
+            'self-end row-start-1 row-span-1 col-span-6 max-md:flex max-md:flex-col max-md:justify-center max-md:h-full max-md:col-span-full max-md:px-6 relative ' +
             (leftAligned ? 'md:col-start-1 md:col-span-6 ' : '') +
             (rightAligned
               ? 'md:text-right md:col-start-5 md:col-span-full lg:col-start-7'
@@ -80,14 +80,14 @@ function ProjectCard(props: ProjectCardProps) {
                 </div>
               )}
             </div>
-            <div className="relative z-20 p-6 md:bg-[white] shadow-md rounded-xl">
+            <div className="relative z-20 md:p-6 max-md:pt-3 md:bg-[white] md:shadow-md rounded-xl">
               {shortDescription}
             </div>
           </div>
         </div>
         <div
           className={
-            'self-start row-start-2 row-span-1 col-span-5 max-md:flex max-md:flex-col max-md:justify-center max-md:h-full max-md:col-span-full relative md:mt-4 ' +
+            'self-start row-start-2 row-span-1 col-span-5 max-md:flex max-md:flex-col max-md:justify-center max-md:h-full max-md:col-span-full max-md:px-6 relative md:mt-4 ' +
             (leftAligned ? 'md:col-start-1 md:col-span-6 ' : '') +
             (rightAligned
               ? 'md:text-right md:col-start-8 md:col-span-full lg:col-start-8'

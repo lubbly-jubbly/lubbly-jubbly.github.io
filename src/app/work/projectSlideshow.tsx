@@ -4,6 +4,7 @@ import fs from 'fs'
 import path from 'path'
 import { PROJECTS } from '../../../content/projects'
 import '../../components/discoOutline.css'
+import Image from 'next/image'
 
 type ProjectSlideshowProps = {
   imageUrls: string[]
@@ -37,7 +38,14 @@ export default function ProjectSlideshow(props: ProjectSlideshowProps) {
                   className="flex flex-row justify-center items-center w-1/3 p-3"
                 >
                   <div className={`disco-item disco-item-orange-${i + 1}`}>
-                    <img key={i} src={url} alt={`Screenshot ${i}`} />
+                    <Image
+                      key={i}
+                      src={url}
+                      alt={`Screenshot ${i}`}
+                      width={0}
+                      height={0}
+                      className="w-full h-auto"
+                    />
                   </div>
                 </div>
               ))}
@@ -56,7 +64,13 @@ export default function ProjectSlideshow(props: ProjectSlideshowProps) {
                 }
                 key={index}
               >
-                <img src={url} alt="" className="h-full" />
+                <Image
+                  src={url}
+                  alt=""
+                  width={0}
+                  height={0}
+                  className="w-full h-auto"
+                />
               </div>
             </div>
           ))}
