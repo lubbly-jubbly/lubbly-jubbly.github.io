@@ -34,7 +34,7 @@ function ProjectCard(props: ProjectCardProps) {
 
   let i = 1
   return (
-    <div className="h-80 mb-52">
+    <div className="h-80 mb-40">
       <div
         key={i}
         className="relative grid grid-cols-12 grid-rows-[auto,auto] items-center h-full"
