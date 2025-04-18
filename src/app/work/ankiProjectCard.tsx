@@ -39,7 +39,7 @@ function AnkiProjectCard(props: AnkiProjectCardProps) {
   )
 
   return (
-    <div>
+    <div className="mb-28">
       <p className="relative text-3xl md:mb-5 z-20">{props.project.name}</p>
 
       <div className="relative z-20 mb-8">{props.project.shortDescription}</div>
